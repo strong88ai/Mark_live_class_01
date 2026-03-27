@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mark's AI Class · Day 1</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root {
+  --bg: #f5f3f0;
+  --text: #1a1a2e;
+  --dim: #6b6b80;
+  --accent: #4361ee;
+  --pink: #e63946;
+  --mint: #2ec4b6;
+  --orange: #ff6b35;
+}
+.reveal-viewport { background: var(--bg); }
+.reveal { font-family: 'Pretendard Variable', sans-serif; color: var(--text); font-size: 18px; }
+.reveal h1,.reveal h2,.reveal h3,.reveal h4 { font-family: 'Pretendard Variable', sans-serif; color: var(--text); text-transform: none; letter-spacing: -0.03em; }
+.reveal h2 { font-size: 1.7em; font-weight: 900; margin-bottom: 6px; }
+.reveal h3 { font-size: 1.1em; font-weight: 800; }
+.reveal p { line-height: 1.6; }
+.reveal section { text-align: center; }
+.reveal .controls { color: var(--accent); }
+
+/* 배지 */
+.badge { font-size: 0.58em; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; display: inline-block; }
+.badge-blue { color: var(--accent); }
+.badge-pink { color: var(--pink); }
+.badge-mint { color: var(--mint); }
+.badge-orange { color: var(--orange); }
+
+/* 섹션 타이틀 (큰 구분 슬라이드) */
+.section-title { font-size: 2.2em; font-weight: 900; margin-bottom: 12px; }
+.section-sub { font-size: 0.85em; color: var(--dim); }
+
+/* ===== 손그림 효과 ===== */
+.hb, .hc, .hu, .hh, .hs { position: relative; display: inline; }
+.hb { margin: 0 8px; }
+.hc { margin: 0 10px; }
+
+.hb::after { content:''; position:absolute; top:-4px; left:-8px; right:-8px; bottom:-4px; border:2.5px solid var(--pink); border-radius:4px; opacity:0; pointer-events:none; }
+.present .hb::after { animation: drawBox 0.5s ease forwards; }
+
+.hc::after { content:''; position:absolute; top:-8px; left:-12px; right:-12px; bottom:-8px; border:2.5px solid var(--accent); border-radius:50%; opacity:0; pointer-events:none; }
+.present .hc::after { animation: drawCircle 0.5s ease forwards; }
+
+.hu::after { content:''; position:absolute; left:0; right:0; bottom:-4px; height:3px; background:var(--accent); border-radius:2px; opacity:0; pointer-events:none; transform:scaleX(0); transform-origin:left; }
+.present .hu::after { animation: drawLine 0.4s ease forwards; }
+
+.hh::after { content:''; position:absolute; top:-1px; left:-4px; right:-4px; bottom:-1px; border-radius:4px; z-index:-1; opacity:0; pointer-events:none; transform:scaleX(0); transform-origin:left; }
+.present .hh::after { animation: drawHighlight 0.4s ease forwards; }
+
+.hs::after { content:''; position:absolute; left:-2px; right:-2px; top:52%; height:2.5px; background:var(--pink); border-radius:2px; opacity:0; pointer-events:none; transform:scaleX(0); transform-origin:left; }
+.present .hs::after { animation: drawLine 0.4s ease forwards; }
+
+/* 색상 */
+.hb.c-mint::after { border-color: var(--mint); }
+.hb.c-orange::after { border-color: var(--orange); }
+.hb.c-accent::after { border-color: var(--accent); }
+.hc.c-pink::after { border-color: var(--pink); }
+.hc.c-mint::after { border-color: var(--mint); }
+.hc.c-orange::after { border-color: var(--orange); }
+.hu.u-mint::after { background: var(--mint); }
+.hu.u-orange::after { background: var(--orange); }
+.hu.u-pink::after { background: var(--pink); }
+.hh.h-yellow::after { background: rgba(255,230,100,0.4); }
+.hh.h-pink::after { background: rgba(230,57,70,0.12); }
+.hh.h-mint::after { background: rgba(46,196,178,0.15); }
+.hh.h-blue::after { background: rgba(67,97,238,0.12); }
+
+.d1::after { animation-delay:0.3s!important; }
+.d2::after { animation-delay:0.6s!important; }
+.d3::after { animation-delay:0.9s!important; }
+.d4::after { animation-delay:1.2s!important; }
+
+@keyframes drawBox { 0%{opacity:0;transform:scaleX(0)} 50%{opacity:1;transform:scaleX(1) scaleY(0.3)} 100%{opacity:1;transform:scaleX(1) scaleY(1)} }
+@keyframes drawCircle { 0%{opacity:0;transform:scale(0.5) rotate(-5deg)} 60%{opacity:1;transform:scale(1.05) rotate(2deg)} 100%{opacity:1;transform:scale(1) rotate(0)} }
+@keyframes drawLine { 0%{transform:scaleX(0);opacity:0} 100%{transform:scaleX(1);opacity:1} }
+@keyframes drawHighlight { 0%{transform:scaleX(0);opacity:0} 100%{transform:scaleX(1);opacity:1} }
+
+/* ===== 카드 ===== */
+.card { background:#fff; border-radius:14px; padding:22px 26px; box-shadow:0 2px 10px rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.05); text-align:left; }
+
+/* 통계 */
+.stat-grid { display:flex; gap:18px; justify-content:center; margin:24px 0 18px; }
+.stat-card { background:#fff; border-radius:14px; padding:24px 36px; min-width:210px; box-shadow:0 2px 10px rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.05); }
+.stat-num { font-size:1.9em; font-weight:900; line-height:1.3; margin-bottom:6px; }
+.stat-desc { font-size:0.68em; color:var(--dim); line-height:1.5; }
+
+/* 비교 */
+.compare-wrap { display:flex; gap:20px; justify-content:center; margin-top:20px; }
+.compare-box { background:#fff; border-radius:14px; padding:24px 28px; min-width:280px; text-align:left; box-shadow:0 2px 10px rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.05); }
+.compare-box h3 { margin:0 0 12px 0; font-size:1em; }
+.compare-box ul { list-style:none; padding:0; margin:0; }
+.compare-box li { padding:4px 0; font-size:0.75em; color:var(--dim); }
+
+/* 이득 카드 */
+.benefit-grid { display:flex; gap:18px; justify-content:center; margin-top:22px; }
+.benefit-card { background:#fff; border-radius:14px; padding:22px 20px; width:210px; text-align:left; box-shadow:0 2px 10px rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.05); }
+.benefit-card .num { font-size:1.3em; font-weight:900; margin-bottom:8px; }
+.benefit-card h4 { font-size:0.82em; font-weight:700; margin:0 0 6px 0; line-height:1.5; }
+.benefit-card p { font-size:0.68em; color:var(--dim); margin:0; line-height:1.5; }
+
+/* 자기소개 */
+.intro-layout { display:flex; gap:32px; align-items:center; justify-content:center; margin-top:20px; }
+.intro-avatar { width:100px; height:100px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--mint)); display:flex; align-items:center; justify-content:center; font-size:2em; color:#fff; font-weight:900; flex-shrink:0; }
+.intro-text { text-align:left; max-width:440px; }
+.intro-text h3 { font-size:1.05em; margin:0 0 8px 0; line-height:1.5; }
+.intro-text p { font-size:0.75em; color:var(--dim); line-height:1.8; margin:0; }
+
+/* 소통 체크 */
+.interact { text-align:center!important; }
+.interact-icon { font-size:2.6em; margin-bottom:6px; animation: pulse 2s ease infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+.interact h2 { margin-bottom:6px; }
+.interact-sub { font-size:0.8em; color:var(--dim); margin-bottom:20px; }
+.interact-btns { display:flex; gap:14px; justify-content:center; }
+.interact-btn { padding:10px 28px; border-radius:12px; font-size:0.82em; font-weight:700; }
+.btn-yes { background:linear-gradient(135deg,var(--accent),var(--mint)); color:#fff; }
+.btn-no { background:#fff; color:var(--dim); border:1px solid rgba(0,0,0,0.08); }
+
+/* 스텝 */
+.step { display:flex; gap:14px; align-items:flex-start; margin:10px 0; text-align:left; }
+.step-n { width:30px; height:30px; border-radius:10px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.78em; flex-shrink:0; color:#fff; }
+.step-n.n-mint { background:var(--mint); }
+.step-n.n-orange { background:var(--orange); }
+.step-body h4 { margin:0 0 3px 0; font-size:0.82em; font-weight:700; }
+.step-body p { margin:0; font-size:0.7em; color:var(--dim); line-height:1.5; }
+
+/* 코드 */
+.code-box { background:rgba(0,0,0,0.03); border:1px solid rgba(0,0,0,0.06); border-radius:10px; padding:14px 18px; font-family:'Consolas','Monaco',monospace; font-size:0.7em; color:var(--text); line-height:1.7; text-align:left; white-space:pre-wrap; position:relative; margin-top:8px; }
+.copy-btn { position:absolute; top:8px; right:8px; background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:6px; padding:3px 10px; font-size:0.8em; color:var(--dim); cursor:pointer; font-family:'Pretendard Variable',sans-serif; }
+.copy-btn:hover { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+/* 표 */
+.tbl { width:100%; border-collapse:collapse; margin-top:14px; font-size:0.72em; text-align:left; }
+.tbl th { background:rgba(67,97,238,0.06); padding:10px 14px; font-weight:700; border-bottom:2px solid rgba(67,97,238,0.15); }
+.tbl td { padding:10px 14px; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--dim); }
+.tbl tr:last-child td { border-bottom:none; }
+
+/* 타임라인 */
+.timeline { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
+.tl-item { background:#fff; border-radius:10px; padding:10px 16px; font-size:0.72em; font-weight:600; box-shadow:0 1px 6px rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.05); }
+.tl-arrow { color:var(--accent); font-size:1em; display:flex; align-items:center; }
+
+/* 팁/주의 박스 */
+.tip-box { background:rgba(67,97,238,0.05); border-left:3px solid var(--accent); border-radius:0 10px 10px 0; padding:14px 18px; text-align:left; margin-top:12px; font-size:0.75em; color:var(--text); line-height:1.6; }
+.warn-box { background:rgba(230,57,70,0.05); border-left:3px solid var(--pink); border-radius:0 10px 10px 0; padding:14px 18px; text-align:left; margin-top:12px; font-size:0.75em; color:var(--text); line-height:1.6; }
+
+/* 쉬는시간 */
+.break-slide { text-align:center!important; }
+.break-icon { font-size:3em; margin-bottom:10px; }
+.break-timer { font-size:3em; font-weight:900; color:var(--accent); margin:16px 0; }
+
+/* 미션 카드 */
+.mission-grid { display:flex; gap:20px; justify-content:center; margin-top:20px; }
+.mission-card { background:#fff; border-radius:14px; padding:24px; width:300px; text-align:left; box-shadow:0 2px 10px rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.05); }
+.mission-card h3 { font-size:0.95em; margin:0 0 10px 0; }
+.mission-card p { font-size:0.72em; color:var(--dim); line-height:1.6; margin:0; }
+
+/* 메타 칩 */
+.meta-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
+.meta-chip { display:flex; align-items:center; gap:5px; font-size:0.65em; color:var(--dim); padding:6px 14px; border-radius:10px; background:#fff; border:1px solid rgba(0,0,0,0.06); font-weight:500; }
+
+/* 진행률 바 */
+.progress-bar-custom { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--mint)); z-index:100; transition:width 0.4s ease; }
+
+/* 하단 버튼 */
+.page-btn { position:fixed; bottom:14px; right:14px; z-index:200; height:34px; padding:0 14px; border-radius:10px; background:#fff; border:1px solid rgba(0,0,0,0.08); color:var(--dim); font-size:0.65em; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; font-family:'Pretendard Variable',sans-serif; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.page-btn:hover { border-color:var(--accent); color:var(--accent); }
+.page-btn .cp { color:var(--accent); font-weight:800; }
+
+/* 커스텀 전체보기 오버레이 */
+.overview-overlay { position:fixed; top:0; left:0; right:0; bottom:0; z-index:300; background:var(--bg); overflow-y:auto; display:none; padding:20px; }
+.overview-overlay.open { display:block; }
+.overview-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; max-width:1400px; margin:0 auto; }
+.overview-item { background:#fff; border-radius:10px; border:2px solid transparent; cursor:pointer; overflow:hidden; aspect-ratio:16/9; position:relative; box-shadow:0 2px 8px rgba(0,0,0,0.06); transition:border-color 0.2s, transform 0.15s; }
+.overview-item:hover { border-color:var(--accent); transform:translateY(-2px); }
+.overview-item.active { border-color:var(--accent); box-shadow:0 0 0 3px rgba(67,97,238,0.2); }
+.overview-item.dragging { opacity:0.4; transform:scale(0.95); }
+.overview-item.drag-over { border-color:var(--accent); border-style:dashed; background:rgba(67,97,238,0.03); }
+.overview-hint { text-align:center; font-size:12px; color:var(--dim); margin-bottom:14px; font-family:'Pretendard Variable',sans-serif; }
+.overview-hint span { background:rgba(67,97,238,0.08); color:var(--accent); padding:2px 8px; border-radius:4px; font-weight:600; }
+.overview-item iframe { width:1280px; height:720px; transform-origin:0 0; border:none; pointer-events:none; }
+.overview-num { position:absolute; top:6px; left:8px; background:rgba(0,0,0,0.5); color:#fff; font-size:11px; font-weight:700; padding:2px 8px; border-radius:6px; z-index:1; }
+.overview-close { position:fixed; top:16px; right:16px; z-index:301; width:40px; height:40px; border-radius:50%; background:#fff; border:1px solid rgba(0,0,0,0.08); font-size:18px; cursor:pointer; display:none; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.1); font-family:'Pretendard Variable',sans-serif; }
+.overview-overlay.open ~ .overview-close { display:flex; }
+
+/* 좌우 클릭 네비게이션 영역 */
+.click-nav { position:fixed; top:0; bottom:0; width:15%; z-index:10; cursor:pointer; opacity:0; transition:opacity 0.2s; }
+.click-nav:hover { opacity:1; }
+.click-nav-left { left:0; background:linear-gradient(90deg, rgba(0,0,0,0.03), transparent); }
+.click-nav-right { right:0; background:linear-gradient(-90deg, rgba(0,0,0,0.03), transparent); }
+.click-nav-left::after, .click-nav-right::after { content:''; position:absolute; top:50%; transform:translateY(-50%); width:28px; height:28px; border-radius:50%; background:rgba(0,0,0,0.06); display:flex; align-items:center; justify-content:center; }
+.click-nav-left::after { left:12px; }
+.click-nav-right::after { right:12px; }
+
+/* 수정모드 토글 버튼 */
+.edit-toggle { position:fixed; top:14px; right:14px; z-index:200; width:36px; height:36px; border-radius:10px; background:#fff; border:1px solid rgba(0,0,0,0.08); color:var(--dim); font-size:0.9em; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.edit-toggle:hover { border-color:var(--accent); color:var(--accent); }
+.edit-toggle.active { background:var(--accent); border-color:var(--accent); }
+
+/* 수정모드 상단 바 */
+.edit-bar { position:fixed; top:0; left:0; right:0; height:42px; background:#fff; border-bottom:2px solid var(--accent); z-index:250; display:none; align-items:center; justify-content:space-between; padding:0 20px; box-shadow:0 2px 12px rgba(0,0,0,0.08); font-family:'Pretendard Variable',sans-serif; }
+.edit-bar.open { display:flex; }
+.edit-bar-label { font-size:13px; font-weight:700; color:var(--accent); }
+.edit-bar-actions { display:flex; gap:8px; }
+.bar-btn { padding:5px 14px; border-radius:8px; border:1px solid rgba(0,0,0,0.08); background:#fafafa; font-size:12px; font-weight:600; cursor:pointer; font-family:'Pretendard Variable',sans-serif; transition:all 0.15s; }
+.bar-save { background:var(--accent); color:#fff; border-color:var(--accent); }
+.bar-save:hover { background:#3451d4; }
+.bar-reset { color:var(--pink); border-color:rgba(230,57,70,0.2); background:#fff0f0; }
+.bar-reset:hover { background:#ffe0e0; }
+.bar-close { color:var(--dim); }
+.bar-close:hover { background:#eee; }
+
+/* 플로팅 서식 툴바 */
+.float-toolbar { position:fixed; z-index:260; background:#fff; border:1px solid rgba(0,0,0,0.1); border-radius:10px; padding:6px 10px; display:none; align-items:center; gap:6px; box-shadow:0 4px 20px rgba(0,0,0,0.12); font-family:'Pretendard Variable',sans-serif; }
+.float-toolbar.show { display:flex; }
+.ft-group { display:flex; align-items:center; gap:4px; }
+.ft-sep { width:1px; height:22px; background:rgba(0,0,0,0.08); margin:0 2px; }
+.ft-btn { width:28px; height:28px; border-radius:6px; border:1.5px solid rgba(0,0,0,0.08); background:#fff; font-size:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.15s; font-family:'Pretendard Variable',sans-serif; }
+.ft-btn:hover { background:rgba(67,97,238,0.08); border-color:var(--accent); }
+.ft-remove { color:var(--pink); }
+.ft-remove:hover { background:rgba(230,57,70,0.06); border-color:var(--pink); }
+.ft-bold { font-size:13px; }
+#ftFontSize { padding:3px 4px; border:1px solid rgba(0,0,0,0.08); border-radius:6px; font-size:11px; font-family:'Pretendard Variable',sans-serif; background:#fafafa; width:56px; }
+#ftColor { width:26px; height:26px; border:1px solid rgba(0,0,0,0.08); border-radius:6px; padding:0; cursor:pointer; background:transparent; }
+
+/* 효과설정 버튼 */
+.bar-fx { background:rgba(67,97,238,0.08); color:var(--accent); border-color:rgba(67,97,238,0.2); }
+.bar-fx:hover { background:rgba(67,97,238,0.15); }
+
+/* 효과설정 패널 */
+.fx-panel { position:fixed; top:50px; right:14px; z-index:260; width:300px; background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:14px; box-shadow:0 8px 30px rgba(0,0,0,0.12); display:none; font-family:'Pretendard Variable',sans-serif; }
+.fx-panel.open { display:block; animation:panelIn 0.2s ease; }
+@keyframes panelIn { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+.fx-panel-header { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid rgba(0,0,0,0.05); }
+.fx-panel-close { width:26px; height:26px; border:none; background:transparent; font-size:14px; cursor:pointer; border-radius:6px; color:var(--dim); }
+.fx-panel-close:hover { background:rgba(0,0,0,0.04); }
+.fx-panel-body { padding:12px 16px 16px; }
+.fx-section { margin-bottom:12px; }
+.fx-label { font-size:11px; font-weight:600; color:var(--dim); margin-bottom:6px; }
+.fx-palette { display:flex; flex-wrap:wrap; gap:4px; }
+.fx-pick, .fx-delay { padding:4px 10px; border-radius:6px; border:1.5px solid rgba(0,0,0,0.08); background:#fff; font-size:11px; font-weight:500; cursor:pointer; font-family:'Pretendard Variable',sans-serif; color:var(--text); transition:all 0.15s; }
+.fx-pick:hover, .fx-delay:hover { background:rgba(67,97,238,0.05); }
+.fx-pick.active { border-color:var(--accent); background:rgba(67,97,238,0.08); color:var(--accent); font-weight:700; }
+.fx-delay.active { border-color:var(--accent); background:rgba(67,97,238,0.08); color:var(--accent); font-weight:700; }
+.fx-apply-btn { width:100%; padding:8px; border-radius:8px; border:none; background:var(--accent); color:#fff; font-size:12px; font-weight:700; cursor:pointer; font-family:'Pretendard Variable',sans-serif; margin-bottom:6px; }
+.fx-apply-btn:hover { background:#3451d4; }
+.fx-remove-btn { width:100%; padding:8px; border-radius:8px; border:1px solid rgba(230,57,70,0.2); background:#fff0f0; color:var(--pink); font-size:12px; font-weight:700; cursor:pointer; font-family:'Pretendard Variable',sans-serif; }
+.fx-remove-btn:hover { background:#ffe0e0; }
+
+/* 수정모드 시 슬라이드 테두리 표시 */
+.editing-active .reveal .slides > section.present { outline:2px dashed var(--accent); outline-offset:4px; }
+
+/* 이미지 모의 UI */
+.mock-ui { background:#fff; border-radius:12px; border:1px solid rgba(0,0,0,0.08); padding:16px 20px; margin-top:12px; text-align:left; }
+.mock-header { display:flex; align-items:center; gap:8px; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid rgba(0,0,0,0.05); }
+.mock-dot { width:8px; height:8px; border-radius:50%; }
+.mock-input { background:rgba(0,0,0,0.03); border:1px solid rgba(0,0,0,0.06); border-radius:8px; padding:10px 14px; font-size:0.7em; color:var(--dim); line-height:1.6; margin-bottom:8px; }
+.mock-label { font-size:0.62em; font-weight:700; color:var(--text); margin-bottom:4px; }
+
+/* 2열 그리드 */
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
+
+/* 키워드 태그 */
+.tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.tag { background:rgba(67,97,238,0.06); color:var(--accent); padding:4px 10px; border-radius:8px; font-size:0.65em; font-weight:600; }
+.tag-mint { background:rgba(46,196,178,0.08); color:var(--mint); }
+.tag-orange { background:rgba(255,107,53,0.08); color:var(--orange); }
+
+.dim { color:var(--dim); }
+.small { font-size:0.75em; }
+.mt12 { margin-top:12px; }
+.mt20 { margin-top:20px; }
+.mb8 { margin-bottom:8px; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar-custom" id="progressBar"></div>
+
+<!-- 커스텀 전체보기 -->
+<div class="overview-overlay" id="overviewOverlay">
+  <div class="overview-hint"><span>드래그</span>로 슬라이드 순서를 변경할 수 있습니다</div>
+  <div class="overview-grid" id="overviewGrid"></div>
+</div>
+<button class="overview-close" id="overviewClose">✕</button>
+
+<!-- 좌우 클릭 네비게이션 -->
+<div class="click-nav click-nav-left" id="navLeft"></div>
+<div class="click-nav click-nav-right" id="navRight"></div>
+
+<!-- 우측 상단: 수정모드 토글 -->
+<button class="edit-toggle" id="editToggle" title="수정모드">✏️</button>
+
+<!-- 수정모드 상단 바 -->
+<div class="edit-bar" id="editBar">
+  <span class="edit-bar-label">✏️ 수정 모드</span>
+  <div class="edit-bar-actions">
+    <button class="bar-btn bar-save" id="btnSave">💾 저장</button>
+    <button class="bar-btn bar-reset" id="btnReset">↩ 원래대로</button>
+    <button class="bar-btn bar-fx" id="btnFxPanel">✨ 효과설정</button>
+    <button class="bar-btn bar-close" id="btnEditClose">✕ 닫기</button>
+  </div>
+</div>
+
+<!-- 효과설정 패널 -->
+<div class="fx-panel" id="fxPanel">
+  <div class="fx-panel-header">
+    <span style="font-weight:700; font-size:13px;">✨ 효과 설정</span>
+    <button class="fx-panel-close" id="fxPanelClose">✕</button>
+  </div>
+  <div class="fx-panel-body">
+    <div class="fx-section">
+      <div class="fx-label">효과 종류 선택 후 슬라이드에서 텍스트를 드래그하세요</div>
+      <div class="fx-palette">
+        <button class="fx-pick active" data-type="hb" data-color="pink">□ 빨간 박스</button>
+        <button class="fx-pick" data-type="hb c-accent" data-color="blue">□ 파란 박스</button>
+        <button class="fx-pick" data-type="hb c-mint" data-color="mint">□ 민트 박스</button>
+        <button class="fx-pick" data-type="hb c-orange" data-color="orange">□ 오렌지 박스</button>
+        <button class="fx-pick" data-type="hc" data-color="blue">○ 파란 동그라미</button>
+        <button class="fx-pick" data-type="hc c-pink" data-color="pink">○ 빨간 동그라미</button>
+        <button class="fx-pick" data-type="hc c-mint" data-color="mint">○ 민트 동그라미</button>
+        <button class="fx-pick" data-type="hc c-orange" data-color="orange">○ 오렌지 동그라미</button>
+        <button class="fx-pick" data-type="hu" data-color="blue">⎁ 파란 밑줄</button>
+        <button class="fx-pick" data-type="hu u-mint" data-color="mint">⎁ 민트 밑줄</button>
+        <button class="fx-pick" data-type="hu u-orange" data-color="orange">⎁ 오렌지 밑줄</button>
+        <button class="fx-pick" data-type="hu u-pink" data-color="pink">⎁ 핑크 밑줄</button>
+        <button class="fx-pick" data-type="hh h-yellow" data-color="yellow">▬ 노란 형광펜</button>
+        <button class="fx-pick" data-type="hh h-pink" data-color="pink">▬ 핑크 형광펜</button>
+        <button class="fx-pick" data-type="hh h-mint" data-color="mint">▬ 민트 형광펜</button>
+        <button class="fx-pick" data-type="hh h-blue" data-color="blue">▬ 블루 형광펜</button>
+        <button class="fx-pick" data-type="hs" data-color="pink">— 취소선</button>
+      </div>
+    </div>
+    <div class="fx-section">
+      <div class="fx-label">애니메이션 딜레이</div>
+      <div class="fx-palette">
+        <button class="fx-delay active" data-delay="">없음</button>
+        <button class="fx-delay" data-delay="d1">0.3초</button>
+        <button class="fx-delay" data-delay="d2">0.6초</button>
+        <button class="fx-delay" data-delay="d3">0.9초</button>
+        <button class="fx-delay" data-delay="d4">1.2초</button>
+      </div>
+    </div>
+    <div class="fx-section">
+      <button class="fx-apply-btn" id="fxApply">✅ 선택한 텍스트에 효과 적용</button>
+      <button class="fx-remove-btn" id="fxRemove">✕ 선택한 텍스트 효과 제거</button>
+    </div>
+  </div>
+</div>
+
+<!-- 플로팅 서식 툴바 (텍스트 드래그 시 나타남) -->
+<div class="float-toolbar" id="floatToolbar">
+  <div class="ft-group">
+    <select id="ftFontSize">
+      <option value="">크기</option>
+      <option value="12">12</option>
+      <option value="14">14</option>
+      <option value="16">16</option>
+      <option value="18">18</option>
+      <option value="20">20</option>
+      <option value="24">24</option>
+      <option value="28">28</option>
+      <option value="32">32</option>
+      <option value="36">36</option>
+      <option value="42">42</option>
+    </select>
+  </div>
+  <div class="ft-sep"></div>
+  <div class="ft-group">
+    <button class="ft-btn ft-bold" id="ftBold"><b>B</b></button>
+    <input type="color" id="ftColor" value="#1a1a2e" title="글씨 색상">
+  </div>
+  <div class="ft-sep"></div>
+  <div class="ft-group">
+    <button class="ft-btn" data-fx="hb" title="박스">□</button>
+    <button class="ft-btn" data-fx="hc" title="동그라미">○</button>
+    <button class="ft-btn" data-fx="hu" title="밑줄">⎁</button>
+    <button class="ft-btn" data-fx="hh h-yellow" title="형광펜">▬</button>
+    <button class="ft-btn" data-fx="hs" title="취소선">—</button>
+    <button class="ft-btn ft-remove" data-fx="remove" title="효과제거">✕</button>
+  </div>
+</div>
+
+<button class="page-btn" id="overviewToggle">
+  <span class="cp" id="currentPage">1</span><span> / </span><span id="totalPages">56</span>
+  <span style="margin-left:4px;">전체보기</span>
+</button>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ============================================================ -->
+<!-- 오프닝 (1~8)                                                  -->
+<!-- ============================================================ -->
+
+<!-- 1. 타이틀 -->
+<section>
+  <div class="badge badge-blue">Mark's AI Class · Day 1</div>
+  <h2 style="font-size:2em;">ChatGPT 맞춤 설정 &<br>나만의 GPTs 실전 가이드</h2>
+  <p class="dim small mt12">맞춤 설정부터 나만의 AI 비서 제작까지, <span class="hh h-yellow d1">2시간 완성</span> 실습 과정</p>
+  <div class="meta-row mt20">
+    <div class="meta-chip">⏱ 총 2시간</div>
+    <div class="meta-chip">🛠 실습 2회 포함</div>
+    <div class="meta-chip">👋 초보자 대상</div>
+  </div>
+</section>
+
+<!-- 2. 자기소개 -->
+<section>
+  <div class="badge badge-blue">ABOUT ME</div>
+  <h2>안녕하세요, <span class="hc d1">Mark</span> 입니다</h2>
+  <div class="intro-layout">
+    <div class="intro-avatar">M</div>
+    <div class="intro-text">
+      <h3>릴리코어 →  <span class="hb c-mint d2">러블리디어</span></h3>
+      <p>부자재 도매업에서 AI 교육·개발로 전향했습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 강의 취지 -->
+<section>
+  <div class="badge badge-pink">WHY THIS CLASS</div>
+  <h2>이 강의를 준비한 이유</h2>
+  <div class="card mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
+    <p style="font-size:0.8em; color:var(--dim); line-height:2;">
+      <span class="hh h-pink d1">저도 불과 한 달 전까지는 AI가 무서웠어요.</span><br>
+      세상이 빠르게 바뀐다는데, 나만 뒤처지는 것 같아서요.<br>
+      그래서 하루 <span class="hu u-orange d2">5시간에서 많게는 15시간</span>씩 공부를 시작했고,<br>
+      이제야 조금씩 방향이 보이기 시작했어요.<br><br>
+      그런데 문득 이런 생각이 들었어요.<br>
+      "<span class="hb d3">우리 공방 사장님들은, 부모님은 괜찮으실까?</span>"<br><br>
+      어렵지 않게, 쉬운 것부터, 함께요.<br>
+      <strong>오늘이 그 첫 번째 시간입니다.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- 4. AI 위기감 ① -->
+<section>
+  <div class="badge badge-pink">WHY NOW</div>
+  <h2>AI, <span class="hb d1">남의 이야기가 아닙니다</span></h2>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-num"><span class="hu d2">80%</span></div>
+      <div class="stat-desc">글로벌 기업이 2026년까지<br>AI를 업무에 도입할 예정</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num"><span class="hc d3">300만+</span></div>
+      <div class="stat-desc">ChatGPT 일일 활성 사용자<br>(2025년 기준)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num"><span class="hh h-yellow d4">40% ↑</span></div>
+      <div class="stat-desc">AI 도입 기업의<br>업무 생산성 향상률</div>
+    </div>
+  </div>
+  <p class="dim small">"AI를 쓰는 사람 vs 안 쓰는 사람"의 격차는 앞으로 더 빠르게 벌어집니다."</p>
+</section>
+
+<!-- 5. 단톡방 소개 -->
+<section>
+  <div class="badge badge-mint">COMMUNITY</div>
+  <h2>카카오 오픈채널 소개</h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <p style="font-size:0.8em; color:var(--dim); line-height:1.8;">
+      교육이 끝이 아닙니다.<br>
+      AI 관련 정보를 서로 소통하며, <span class="hu u-mint d1">함께 발전</span>하기 위한 공간입니다.
+    </p>
+  </div>
+</section>
+
+<!-- 6. AI 위기감 ② -->
+<section>
+  <div class="badge badge-pink">THE GAP</div>
+  <h2>알고 쓰는 것 vs <span class="hs d1">모르고 쓰는 것</span></h2>
+  <div class="compare-wrap">
+    <div class="compare-box">
+      <h3>😰 AI를 모르고 쓰면</h3>
+      <ul>
+        <li>같은 작업에 30분 이상 소요</li>
+        <li>매번 같은 질문을 반복</li>
+        <li>원하는 결과가 안 나와서 포기</li>
+      </ul>
+    </div>
+    <div class="compare-box">
+      <h3>🚀 AI를 <span class="hh h-mint d2">알고 쓰면</span></h3>
+      <ul>
+        <li>같은 작업을 5분 만에 끝</li>
+        <li>한번 설정하면 자동 적용</li>
+        <li>내 업종에 딱 맞는 답변</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 강의 이득 -->
+<section>
+  <div class="badge badge-blue">WHAT YOU GET</div>
+  <h2>오늘 <span class="hc d1">2시간</span> 투자하면</h2>
+  <div class="benefit-grid">
+    <div class="benefit-card">
+      <div class="num" style="color:var(--accent);">01</div>
+      <h4><span class="hu d2">나만의 ChatGPT</span></h4>
+      <p>매번 반복 설명 없이<br>내 상황에 딱 맞는 답변</p>
+    </div>
+    <div class="benefit-card">
+      <div class="num" style="color:var(--mint);">02</div>
+      <h4><span class="hu u-mint d3">나만의 AI 비서</span></h4>
+      <p>GPTs를 직접 만들어서<br>업무를 자동화</p>
+    </div>
+    <div class="benefit-card">
+      <div class="num" style="color:var(--orange);">03</div>
+      <h4>내일은<br><span class="hb c-orange d4">이미지 + 영상</span></h4>
+      <p>AI 이미지 생성, 영상 제작,<br>QR코드까지</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. 시간 안내 -->
+<section>
+  <div class="badge badge-blue">TIME TABLE</div>
+  <h2>오늘 강의 흐름</h2>
+  <div class="timeline">
+    <div class="tl-item">🎤 1부 강의<br><strong>50분</strong></div>
+    <div class="tl-arrow">→</div>
+    <div class="tl-item">🛠 실습 1<br><strong>15분</strong></div>
+    <div class="tl-arrow">→</div>
+    <div class="tl-item">☕ 쉬는시간<br><strong>10분</strong></div>
+    <div class="tl-arrow">→</div>
+    <div class="tl-item">🎤 2부 강의<br><strong>50분</strong></div>
+    <div class="tl-arrow">→</div>
+    <div class="tl-item">🛠 실습 2<br><strong>15분</strong></div>
+  </div>
+  <div class="tip-box mt20" style="max-width:500px; margin-left:auto; margin-right:auto;">
+    💬 소통은 <strong>줌 채팅</strong>으로! "따라오셨나요?" 하면 채팅에 남겨주세요.<br>
+    실습 중 모르는 건 채팅에 자유롭게 질문해주세요.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 1차 본강의 (9~25)                                              -->
+<!-- ============================================================ -->
+
+<!-- 9. 섹션 타이틀 -->
+<section>
+  <div class="badge badge-blue">PART 1 · 50분</div>
+  <div class="section-title">ChatGPT<br><span class="hh h-blue d1">개인 맞춤 설정</span></div>
+  <p class="section-sub">모든 대화에 자동으로 적용되는 나만의 규칙을 만듭니다</p>
+</section>
+
+<!-- 10. LLM이란? -->
+<section>
+  <div class="badge badge-blue">기초 용어</div>
+  <h2><span class="hc d1">LLM</span> 이란?</h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <p style="font-size:0.8em; line-height:1.8;">
+      <strong>Large Language Model</strong> = 대규모 언어 모델<br><br>
+      인간의 언어를 이해하고 생성하는 AI 기술입니다.
+    </p>
+    <div class="tags mt12">
+      <span class="tag">질문 답변</span>
+      <span class="tag">글쓰기·요약</span>
+      <span class="tag">번역</span>
+      <span class="tag tag-mint">아이디어 정리</span>
+      <span class="tag tag-orange">코드 작성</span>
+      <span class="tag">자료 분석</span>
+    </div>
+  </div>
+</section>
+
+<!-- 11. LLM 서비스들 -->
+<section>
+  <div class="badge badge-blue">기초 용어</div>
+  <h2>LLM = <span class="hh h-blue d1">똑똑한 두뇌</span></h2>
+  <p class="dim small">LLM은 두뇌이고, 서비스는 그 두뇌를 활용한 제품입니다</p>
+  <div class="stat-grid mt20">
+    <div class="stat-card" style="text-align:center;">
+      <div style="font-size:1.6em; margin-bottom:6px;">🟢</div>
+      <div style="font-size:0.9em; font-weight:800;">ChatGPT</div>
+      <div class="stat-desc">OpenAI</div>
+    </div>
+    <div class="stat-card" style="text-align:center;">
+      <div style="font-size:1.6em; margin-bottom:6px;">🔵</div>
+      <div style="font-size:0.9em; font-weight:800;">Gemini</div>
+      <div class="stat-desc">Google</div>
+    </div>
+    <div class="stat-card" style="text-align:center;">
+      <div style="font-size:1.6em; margin-bottom:6px;">🟠</div>
+      <div style="font-size:0.9em; font-weight:800;">Claude</div>
+      <div class="stat-desc">Anthropic</div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. 프롬프트란? -->
+<section>
+  <div class="badge badge-blue">기초 용어</div>
+  <h2><span class="hc d1">프롬프트</span> 란?</h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <p style="font-size:0.8em; line-height:1.8;">
+      AI에게 보내는 <strong>명령어</strong>입니다.<br><br>
+      <span class="hu u-orange d2">구체적일수록</span> 원하는 답에 더 가까워집니다.
+    </p>
+  </div>
+  <div class="compare-wrap mt20">
+    <div class="compare-box" style="min-width:220px;">
+      <h3>❌ 애매한 프롬프트</h3>
+      <p class="dim small">"글 써줘"</p>
+    </div>
+    <div class="compare-box" style="min-width:220px;">
+      <h3>✅ 구체적 프롬프트</h3>
+      <p class="dim small">"꽃집 블로그에 올릴<br>봄 꽃다발 추천 글 써줘"</p>
+    </div>
+  </div>
+</section>
+
+<!-- 13. 맞춤 설정이란? -->
+<section>
+  <div class="badge badge-blue">핵심 개념</div>
+  <h2><span class="hb c-accent d1">맞춤 설정</span> 이란?</h2>
+  <div class="card mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
+    <p style="font-size:0.8em; line-height:1.8;">
+      모든 대화에 <span class="hh h-yellow d2">자동으로 적용</span>되는<br>
+      나만의 배경 정보와 응답 규칙<br><br>
+      한번 설정하면 새 대화를 열 때마다 ChatGPT가 자동으로 참조합니다.<br>
+      매번 "한국어로 답해줘", "나는 이런 사람이야"를<br>
+      <span class="hs d3">반복할 필요가 사라집니다.</span>
+    </p>
+  </div>
+  <p class="dim small mt12">출처: OpenAI 공식 블로그, "Custom Instructions for ChatGPT" (2023.07)</p>
+</section>
+
+<!-- 14. 비유로 이해하기 -->
+<section>
+  <div class="badge badge-blue">BEFORE & AFTER</div>
+  <h2>비유로 이해하기</h2>
+  <div class="compare-wrap">
+    <div class="compare-box">
+      <h3>🍽 설정 전 — 처음 가는 식당</h3>
+      <ul>
+        <li>메뉴판을 처음부터 봐야 하고</li>
+        <li>취향을 <span class="hs d1">매번 설명</span>해야 합니다</li>
+        <li>내 상황을 전혀 모름</li>
+      </ul>
+    </div>
+    <div class="compare-box">
+      <h3>🏠 설정 후 — <span class="hc c-mint d2">단골 식당</span></h3>
+      <ul>
+        <li>"오늘도 순두부 안 매운 걸로요?"</li>
+        <li>나의 선호를 이미 알고 있습니다</li>
+        <li><span class="hh h-mint d3">한마디면 OK</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 15. 설정 전후 비교 -->
+<section>
+  <div class="badge badge-orange">RESULT COMPARISON</div>
+  <h2>같은 질문, <span class="hh h-yellow d1">완전히</span> 다른 결과</h2>
+  <p class="dim small mb8">질문: "블로그 글 써줘"</p>
+  <div class="compare-wrap">
+    <div class="compare-box">
+      <h3>❌ 맞춤 설정 전</h3>
+      <div class="code-box" style="font-size:0.65em;">Here are some tips for writing
+a great blog post:
+1. Choose a compelling topic
+2. Write an engaging headline...</div>
+      <ul style="margin-top:8px;">
+        <li>영어로 답변</li>
+        <li>내 상황 무관</li>
+        <li>일반적 내용</li>
+      </ul>
+    </div>
+    <div class="compare-box">
+      <h3>✅ 맞춤 설정 후</h3>
+      <div class="code-box" style="font-size:0.65em;">🌸 이번 주 꽃집 블로그 글 초안
+
+제목: "봄맞이 꽃다발, 어떤 꽃이 좋을까?"
+
+안녕하세요, ○○플라워입니다...</div>
+      <ul style="margin-top:8px;">
+        <li><span class="hh h-mint d2">한국어 답변</span></li>
+        <li>내 업종 맞춤</li>
+        <li>바로 사용 가능</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 16. 소통 체크 ① -->
+<section class="interact">
+  <div class="interact-icon">💬</div>
+  <h2>여기까지 이해되셨나요?</h2>
+  <p class="interact-sub">줌 채팅에 남겨주세요!</p>
+  <div class="interact-btns">
+    <div class="interact-btn btn-yes">⭕ 이해됐어요!</div>
+    <div class="interact-btn btn-no">❌ 잘 모르겠어요</div>
+  </div>
+</section>
+
+<!-- 17. 맞춤 설정 구조 -->
+<section>
+  <div class="badge badge-blue">STRUCTURE</div>
+  <h2>맞춤 설정의 <span class="hu d1">구조</span></h2>
+  <div class="grid-2" style="max-width:700px; margin-left:auto; margin-right:auto;">
+    <div class="mock-ui">
+      <div class="mock-label">입력란 1 — <span class="hh h-blue d2">나에 대한 정보</span></div>
+      <div class="mock-input">저는 소규모 꽃집을 운영하는 자영업자입니다. 꽃 배달 서비스를 준비 중이고, SNS 마케팅에 관심이 많습니다.</div>
+      <p class="dim" style="font-size:0.6em;">1,500자 제한</p>
+    </div>
+    <div class="mock-ui">
+      <div class="mock-label">입력란 2 — <span class="hh h-mint d3">원하는 응답 방식</span></div>
+      <div class="mock-input">항상 한국어로 답변해 주세요. 어려운 용어가 나오면 쉬운 말로 풀어서 설명해 주세요.</div>
+      <p class="dim" style="font-size:0.6em;">1,500자 제한</p>
+    </div>
+  </div>
+</section>
+
+<!-- 18. 설정 경로 -->
+<section>
+  <div class="badge badge-blue">HOW TO</div>
+  <h2>설정 <span class="hu d1">경로</span></h2>
+  <div class="grid-2 mt20" style="max-width:650px; margin-left:auto; margin-right:auto;">
+    <div class="card">
+      <h3 style="font-size:0.9em;">🖥 PC</h3>
+      <div class="step mt12">
+        <div class="step-n">1</div>
+        <div class="step-body"><h4>프로필 아이콘</h4><p>화면 우측 상단</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-body"><h4>ChatGPT 맞춤 설정</h4><p>클릭하여 진입</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:0.9em;">📱 모바일</h3>
+      <div class="step mt12">
+        <div class="step-n n-mint">1</div>
+        <div class="step-body"><h4>메뉴 → 프로필</h4><p>좌측 상단 메뉴</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n n-mint">2</div>
+        <div class="step-body"><h4>개인 맞춤 설정</h4><p>탭하여 진입</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 19. 입력란 1 - 4가지 핵심 -->
+<section>
+  <div class="badge badge-blue">입력란 1</div>
+  <h2>나에 대한 정보: <span class="hc d1">4가지</span> 핵심</h2>
+  <div class="stat-grid">
+    <div class="stat-card" style="text-align:center; padding:20px 24px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">💼</div>
+      <div style="font-size:0.82em; font-weight:700;">내가 하는 일</div>
+      <div class="stat-desc">직업, 역할, 직책</div>
+    </div>
+    <div class="stat-card" style="text-align:center; padding:20px 24px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">🎯</div>
+      <div style="font-size:0.82em; font-weight:700;">관심사 / 목적</div>
+      <div class="stat-desc">현재 집중하는 일</div>
+    </div>
+    <div class="stat-card" style="text-align:center; padding:20px 24px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">🌏</div>
+      <div style="font-size:0.82em; font-weight:700;">선호 언어</div>
+      <div class="stat-desc">한국어 사용 명시</div>
+    </div>
+    <div class="stat-card" style="text-align:center; padding:20px 24px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">📊</div>
+      <div style="font-size:0.82em; font-weight:700;">나의 AI 수준</div>
+      <div class="stat-desc">초보 / 중급 / 전문가</div>
+    </div>
+  </div>
+</section>
+
+<!-- 20. 예시 A - 자영업자 -->
+<section>
+  <div class="badge badge-orange">예시 A</div>
+  <h2>자영업자 — <span class="hc c-orange d1">꽃집</span></h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <div class="code-box">저는 소규모 꽃집을 운영하는 자영업자입니다.
+현재 꽃 배달 서비스 준비, SNS 마케팅에 집중하고 있습니다.
+한국어로 대화합니다.
+AI는 처음 사용합니다.<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
+  </div>
+</section>
+
+<!-- 21. 예시 B - 직장인 -->
+<section>
+  <div class="badge badge-blue">예시 B</div>
+  <h2>직장인 — <span class="hc d1">마케팅 팀장</span></h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <div class="code-box">저는 중소기업 마케팅 팀장, 7년차입니다.
+현재 보고서 작성, 경쟁사 분석에 집중하고 있습니다.
+한국어로 대화합니다.
+AI를 가끔 사용해 봤습니다.<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
+  </div>
+</section>
+
+<!-- 22. 입력란 2 - 응답 방식 -->
+<section>
+  <div class="badge badge-blue">입력란 2</div>
+  <h2>원하는 <span class="hu d1">응답 방식</span></h2>
+  <div class="stat-grid">
+    <div class="stat-card" style="text-align:center; padding:20px 24px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">📏</div>
+      <div style="font-size:0.82em; font-weight:700;">답변 길이</div>
+      <div class="stat-desc">간결하게 vs 상세하게</div>
+    </div>
+    <div class="stat-card" style="text-align:center; padding:20px 24px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">🗣</div>
+      <div style="font-size:0.82em; font-weight:700;">말투</div>
+      <div class="stat-desc">격식체 vs 친근한 톤</div>
+    </div>
+    <div class="stat-card" style="text-align:center; padding:20px 24px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">📋</div>
+      <div style="font-size:0.82em; font-weight:700;">형식</div>
+      <div class="stat-desc">목록 / 표 / 문장형</div>
+    </div>
+    <div class="stat-card" style="text-align:center; padding:20px 24px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">🚫</div>
+      <div style="font-size:0.82em; font-weight:700;">금지 사항</div>
+      <div class="stat-desc">이모지 금지, 영어 금지 등</div>
+    </div>
+  </div>
+</section>
+
+<!-- 23. 코드 예시 -->
+<section>
+  <div class="badge badge-blue">입력란 2 예시</div>
+  <h2>이렇게 작성하세요</h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <div class="code-box">항상 한국어로 답변해 주세요.
+어려운 용어가 나오면 쉬운 말로 풀어서 설명해 주세요.
+답변은 목록 형태로 정리해 주세요.
+이모지는 사용하지 마세요.<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
+  </div>
+  <div class="tip-box mt12" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    💡 <span class="hu u-mint d1">구체적으로</span> 쓸수록 결과가 좋습니다.<br>
+    "직장인"보다 "중소기업 마케팅 팀장"이 훨씬 정확한 답변을 이끌어냅니다.
+  </div>
+</section>
+
+<!-- 24. 주의사항 & 팁 -->
+<section>
+  <div class="badge badge-pink">NOTICE</div>
+  <h2>주의사항 & 팁</h2>
+  <div class="grid-2 mt20" style="max-width:650px; margin-left:auto; margin-right:auto;">
+    <div class="warn-box" style="margin-top:0;">
+      ⚠️ <strong>주의</strong><br><br>
+      맞춤 설정은 <span class="hb d1">새 대화를 열어야</span> 적용됩니다.<br>
+      기존에 열려 있는 대화에는 반영되지 않습니다.
+    </div>
+    <div class="tip-box" style="margin-top:0;">
+      💡 <strong>팁</strong><br><br>
+      원하지 않는 것도 명시하면 효과적입니다.<br>
+      예: "<span class="hu u-pink d2">영어 섞지 마세요</span>"
+    </div>
+  </div>
+</section>
+
+<!-- 25. 소통 체크 ② -->
+<section class="interact">
+  <div class="interact-icon">✋</div>
+  <h2>맞춤 설정, 어렵지 않죠?</h2>
+  <p class="interact-sub">채팅에 느낌 한마디 남겨주세요!</p>
+  <div class="interact-btns">
+    <div class="interact-btn btn-yes">👍 할 수 있을 것 같아요</div>
+    <div class="interact-btn btn-no">🤔 아직 헷갈려요</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 실습 1 (26~30)                                                 -->
+<!-- ============================================================ -->
+
+<!-- 26. 실습 타이틀 -->
+<section>
+  <div class="badge badge-mint">PRACTICE · 15분</div>
+  <div class="section-title">실습 시간</div>
+  <p class="section-sub">나만의 맞춤 설정을 직접 작성하고 적용해봅니다</p>
+  <div class="tip-box mt20" style="max-width:450px; margin-left:auto; margin-right:auto;">
+    🛠 모르는 건 <strong>줌 채팅</strong>에 자유롭게 질문하세요!
+  </div>
+</section>
+
+<!-- 27. Step 1-2 -->
+<section>
+  <div class="badge badge-mint">STEP 1~2</div>
+  <h2>ChatGPT 접속 → 설정 진입</h2>
+  <div class="grid-2 mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
+    <div class="card">
+      <div class="step">
+        <div class="step-n n-mint">1</div>
+        <div class="step-body">
+          <h4>ChatGPT 접속 및 로그인</h4>
+          <p>PC: <span class="hu u-mint d1">chatgpt.com</span><br>모바일: ChatGPT 앱 실행</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="step">
+        <div class="step-n n-mint">2</div>
+        <div class="step-body">
+          <h4>맞춤 설정 화면 진입</h4>
+          <p>PC: 프로필 아이콘 → "맞춤 설정"<br>모바일: 메뉴 → 프로필 → "개인 맞춤 설정"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 28. Step 3 -->
+<section>
+  <div class="badge badge-mint">STEP 3</div>
+  <h2>입력란 1: <span class="hu u-mint d1">나에 대한 정보</span></h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <div class="code-box">저는 [직업/역할]을 하고 있습니다.
+현재 [관심사 또는 하고 있는 일]에 집중하고 있습니다.
+한국어로 대화합니다.
+AI는 [처음 사용합니다 / 가끔 사용해 봤습니다].<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
+    <p class="dim small mt12">[ ] 안의 내용을 본인 상황에 맞게 바꿔서 작성하세요!</p>
+  </div>
+</section>
+
+<!-- 29. Step 4 -->
+<section>
+  <div class="badge badge-mint">STEP 4</div>
+  <h2>입력란 2: <span class="hu u-mint d1">응답 방식</span></h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <div class="code-box">항상 한국어로 답변해 주세요.
+어려운 용어가 나오면 쉬운 말로 풀어서 설명해 주세요.
+답변은 [간결하게 / 자세하게] 해 주세요.<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
+    <p class="dim small mt12">원하는 스타일에 맞게 수정하세요!</p>
+  </div>
+</section>
+
+<!-- 30. Step 5 -->
+<section>
+  <div class="badge badge-mint">STEP 5</div>
+  <h2>저장 후 <span class="hc c-mint d1">테스트</span></h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <div class="step">
+      <div class="step-n n-mint">✓</div>
+      <div class="step-body">
+        <h4>저장 → 새 대화 열기</h4>
+        <p>기존 대화가 아닌, <strong>새 대화</strong>를 열어야 적용됩니다!</p>
+      </div>
+    </div>
+    <div class="step mt12">
+      <div class="step-n n-mint">?</div>
+      <div class="step-body">
+        <h4>테스트 질문</h4>
+        <p>"<span class="hh h-mint d2">이번 주에 사용할 수 있는 아이디어 3개만 추천해 줘</span>"</p>
+      </div>
+    </div>
+  </div>
+  <p class="dim small mt12">답변이 한국어로, 내 상황에 맞게 나오는지 확인하세요!</p>
+</section>
+
+<!-- ============================================================ -->
+<!-- 휴식 + 2일차 기대감 (31~33)                                     -->
+<!-- ============================================================ -->
+
+<!-- 31. 쉬는 시간 -->
+<section class="break-slide">
+  <div class="break-icon">☕</div>
+  <h2>쉬는 시간</h2>
+  <div class="break-timer">10분</div>
+  <p class="dim small">잠시 쉬고 돌아올게요!<br>화장실 다녀오시고, 물 한 잔 드세요 🙂</p>
+</section>
+
+<!-- 32. 2일차 예고 티저 -->
+<section>
+  <div class="badge badge-orange">TOMORROW</div>
+  <h2>내일은 <span class="hh h-yellow d1">더 재미있습니다</span></h2>
+  <p class="dim small mb8">오늘 배운 맞춤설정 + GPTs로...</p>
+  <div class="benefit-grid">
+    <div class="benefit-card">
+      <div class="num" style="color:var(--accent);">🎨</div>
+      <h4><span class="hu d2">AI 이미지</span> 생성</h4>
+      <p>원하는 이미지를<br>AI로 직접 만들기</p>
+    </div>
+    <div class="benefit-card">
+      <div class="num" style="color:var(--mint);">🎬</div>
+      <h4><span class="hu u-mint d3">영상 제작</span></h4>
+      <p>만든 이미지로<br>영상까지 제작</p>
+    </div>
+    <div class="benefit-card">
+      <div class="num" style="color:var(--orange);">📱</div>
+      <h4>이쁜<br><span class="hb c-orange d4">QR코드</span></h4>
+      <p>우리 매장만의<br>특별한 QR코드</p>
+    </div>
+  </div>
+</section>
+
+<!-- 33. 기대감 강조 -->
+<section>
+  <div class="badge badge-orange">DON'T MISS</div>
+  <h2><span class="hb d1">내일까지 꼭 다 들어보세요!</span></h2>
+  <div class="card mt20" style="max-width:500px; margin-left:auto; margin-right:auto;">
+    <p style="font-size:0.82em; line-height:1.8; text-align:center;">
+      1일차에서 배운 <span class="hu d2">맞춤 설정과 GPTs</span>가<br>
+      내일 실습에서 진짜 힘을 발휘합니다.<br><br>
+      <strong>2일 모두 들어야 완성되는 과정입니다!</strong>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2차 본강의 (34~46)                                              -->
+<!-- ============================================================ -->
+
+<!-- 34. 섹션 타이틀 -->
+<section>
+  <div class="badge badge-mint">PART 2 · 50분</div>
+  <div class="section-title">나에게 맞는<br><span class="hh h-mint d1">GPTs</span> 만들기</div>
+  <p class="section-sub">특정 업무에 최적화된 나만의 AI 비서를 직접 만듭니다</p>
+</section>
+
+<!-- 35. GPTs란? -->
+<section>
+  <div class="badge badge-mint">핵심 개념</div>
+  <h2><span class="hc c-mint d1">GPTs</span> 란?</h2>
+  <div class="card mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
+    <p style="font-size:0.8em; line-height:1.8;">
+      특정 목적에 맞게 역할, 규칙, 지식을<br>
+      <span class="hh h-mint d2">미리 설정해 둔</span> 맞춤형 ChatGPT 챗봇<br><br>
+      한 번 만들어두면 열자마자 전문적인 도움을 받을 수 있습니다.<br>
+      파일(PDF, 엑셀 등)을 학습시킬 수도 있습니다.
+    </p>
+  </div>
+  <p class="dim small mt12">출처: OpenAI, GPTs 기능 공개 (2023.11)</p>
+</section>
+
+<!-- 36. 비유로 이해하기 -->
+<section>
+  <div class="badge badge-mint">ANALOGY</div>
+  <h2>비유로 이해하기</h2>
+  <div class="compare-wrap">
+    <div class="compare-box">
+      <h3>👤 일반 ChatGPT = <span class="hh h-blue d1">만능 직원</span></h3>
+      <ul>
+        <li>뭐든 할 수 있지만</li>
+        <li>매번 업무 배경과 규칙을</li>
+        <li>처음부터 설명해야 합니다</li>
+      </ul>
+    </div>
+    <div class="compare-box">
+      <h3>⭐ GPTs = <span class="hc c-mint d2">전문 담당자</span></h3>
+      <ul>
+        <li>자기 업무를 이미 파악</li>
+        <li>간단한 지시만으로</li>
+        <li>원하는 결과를 즉시 생성</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 37. 맞춤 설정 vs GPTs -->
+<section>
+  <div class="badge badge-mint">COMPARISON</div>
+  <h2>맞춤 설정 vs GPTs</h2>
+  <div class="card mt20" style="max-width:650px; margin-left:auto; margin-right:auto;">
+    <table class="tbl">
+      <tr><th>구분</th><th><span class="hu d1">맞춤 설정</span></th><th><span class="hu u-mint d2">GPTs</span></th></tr>
+      <tr><td>적용 범위</td><td>모든 대화에 자동 적용</td><td>해당 GPTs에서만 작동</td></tr>
+      <tr><td>역할</td><td>ChatGPT의 기본 성격</td><td>특정 업무 전용 챗봇</td></tr>
+      <tr><td>비유</td><td>회사 사내 규정</td><td>부서별 업무 매뉴얼</td></tr>
+    </table>
+  </div>
+  <div class="tip-box mt12" style="max-width:650px; margin-left:auto; margin-right:auto;">
+    💡 <strong>조합 전략:</strong> 맞춤 설정으로 기본 바탕을 깔고, GPTs로 업무별 자동화를 구축
+  </div>
+</section>
+
+<!-- 38. 소통 체크 ③ -->
+<section class="interact">
+  <div class="interact-icon">🤔</div>
+  <h2>맞춤 설정이랑 GPTs 차이,<br>이해되셨나요?</h2>
+  <p class="interact-sub">줌 채팅에 O / X 남겨주세요!</p>
+  <div class="interact-btns">
+    <div class="interact-btn btn-yes">⭕ 이해됐어요</div>
+    <div class="interact-btn btn-no">❌ 헷갈려요</div>
+  </div>
+</section>
+
+<!-- 39. 준비물 -->
+<section>
+  <div class="badge badge-mint">PREPARATION</div>
+  <h2>GPTs 만들기 <span class="hu u-mint d1">준비물</span></h2>
+  <div class="stat-grid">
+    <div class="stat-card" style="text-align:center; padding:20px 28px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">💳</div>
+      <div style="font-size:0.82em; font-weight:700;">ChatGPT Plus</div>
+      <div class="stat-desc">월 $20 / 약 27,000원</div>
+    </div>
+    <div class="stat-card" style="text-align:center; padding:20px 28px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">🌐</div>
+      <div style="font-size:0.82em; font-weight:700;">브라우저</div>
+      <div class="stat-desc">PC 또는 모바일</div>
+    </div>
+    <div class="stat-card" style="text-align:center; padding:20px 28px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">💡</div>
+      <div style="font-size:0.82em; font-weight:700;">역할 아이디어</div>
+      <div class="stat-desc">만들고 싶은 GPTs 구상</div>
+    </div>
+  </div>
+  <p class="dim small mt12">※ 무료 계정도 다른 사람의 GPTs <span class="hh h-blue d2">사용은 가능</span>. 만들기는 Plus 이상.</p>
+</section>
+
+<!-- 40. Configure 탭 핵심 항목 -->
+<section>
+  <div class="badge badge-mint">CONFIGURE</div>
+  <h2>GPTs 설정 <span class="hu u-mint d1">핵심 항목</span></h2>
+  <div class="card mt20" style="max-width:650px; margin-left:auto; margin-right:auto;">
+    <table class="tbl">
+      <tr><th>항목</th><th>설명</th></tr>
+      <tr><td><strong>이름</strong></td><td>GPTs의 이름</td></tr>
+      <tr><td><strong>설명</strong></td><td>이 GPTs가 하는 일 한 줄 요약</td></tr>
+      <tr><td><strong><span class="hh h-mint d2">지침 (Instructions)</span></strong></td><td>핵심! 역할, 규칙, 말투를 정의</td></tr>
+      <tr><td><strong>대화 시작 문구</strong></td><td>사용자에게 보여줄 예시 질문</td></tr>
+      <tr><td><strong>지식</strong></td><td>참고 파일 업로드 (PDF, 엑셀 등)</td></tr>
+      <tr><td><strong>기능</strong></td><td>웹 검색, 이미지 생성, 코드 실행 ON/OFF</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 41. Instructions 작성법 ① -->
+<section>
+  <div class="badge badge-mint">INSTRUCTIONS 1/4</div>
+  <h2><span class="hc c-mint d1">역할</span> 정의</h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <p style="font-size:0.8em; line-height:1.8;">
+      무슨 전문가인지 <span class="hu u-mint d2">1문장으로 명확히</span><br><br>
+      "역할이 애매하면 출력도 애매해집니다."
+    </p>
+    <div class="code-box mt12">너는 소규모 자영업자를 위한 SNS 마케팅 전문 코치야.</div>
+  </div>
+</section>
+
+<!-- 42. Instructions 작성법 ② -->
+<section>
+  <div class="badge badge-mint">INSTRUCTIONS 2/4</div>
+  <h2><span class="hu u-mint d1">대상 사용자</span> + 목표</h2>
+  <div class="grid-2 mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
+    <div class="card">
+      <h3 style="font-size:0.9em;">🎯 대상 사용자</h3>
+      <p class="dim small mt12">누구를 위한 GPT인지 적습니다.<br>"이걸 써야 난이도 조절이 됩니다."</p>
+      <div class="code-box mt12" style="font-size:0.65em;">대상: AI를 처음 사용하는 자영업자</div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:0.9em;">🏆 목표</h3>
+      <p class="dim small mt12">이 GPT가 뭘 잘해야 하는지.<br>"목표가 없으면 실행성이 낮아집니다."</p>
+      <div class="code-box mt12" style="font-size:0.65em;">목표: 실행 가능한 마케팅 전략 제공</div>
+    </div>
+  </div>
+</section>
+
+<!-- 43. Instructions 작성법 ③ -->
+<section>
+  <div class="badge badge-pink">INSTRUCTIONS 3/4 · 가장 중요!</div>
+  <h2><span class="hb d1">행동 규칙</span></h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <p style="font-size:0.78em; line-height:1.8; color:var(--dim);">
+      막연하게 "잘 답해라"보다 <span class="hu u-pink d2">행동 기준</span>을 넣어야 합니다.
+    </p>
+    <div class="code-box mt12" style="font-size:0.65em;">- 답변은 3단계 이내로 정리할 것
+- 전문 용어 사용 시 반드시 쉬운 설명 추가
+- 예산이 언급되지 않으면 무료 방법 우선 추천
+- 답변 마지막에 "다음 단계" 1개를 제안할 것
+- 사용자가 막히면 구체적인 예시를 먼저 보여줄 것</div>
+  </div>
+</section>
+
+<!-- 44. Instructions 작성법 ④ -->
+<section>
+  <div class="badge badge-mint">INSTRUCTIONS 4/4</div>
+  <h2>금지 규칙 + <span class="hu u-mint d1">출력 형식</span></h2>
+  <div class="grid-2 mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
+    <div class="card">
+      <h3 style="font-size:0.9em;">🚫 금지 규칙</h3>
+      <div class="code-box mt12" style="font-size:0.65em;">- 영어로 답변하지 말 것
+- 광고성 추천 금지
+- 불확실한 정보 단정짓지 말 것
+- "~할 수 있습니다" 나열 금지</div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:0.9em;">📋 출력 형식</h3>
+      <div class="code-box mt12" style="font-size:0.65em;">- 제목은 굵게
+- 핵심은 번호 목록으로
+- 3문장 이상 시 소제목 추가
+- 마지막에 한 줄 요약 포함</div>
+    </div>
+  </div>
+</section>
+
+<!-- 45. 좋은/나쁜 문장 비교 -->
+<section>
+  <div class="badge badge-orange">GOOD vs BAD</div>
+  <h2>좋은 문장 vs 나쁜 문장</h2>
+  <div class="compare-wrap">
+    <div class="compare-box">
+      <h3>❌ <span class="hs d1">나쁜 문장</span></h3>
+      <ul>
+        <li>"최선을 다해 답하라"</li>
+        <li>"친절하게 설명하라"</li>
+        <li>"전문가처럼 행동하라"</li>
+      </ul>
+      <p class="dim small mt12">→ 너무 추상적이라<br>결과가 흔들립니다</p>
+    </div>
+    <div class="compare-box">
+      <h3>✅ <span class="hh h-mint d2">좋은 문장</span></h3>
+      <ul>
+        <li>"3단계 이내로 정리할 것"</li>
+        <li>"쉬운 설명을 반드시 추가"</li>
+        <li>"무료 방법을 우선 추천"</li>
+      </ul>
+      <p class="dim small mt12">→ 구체적이고 행동 지시가<br>분명합니다</p>
+    </div>
+  </div>
+</section>
+
+<!-- 46. 소통 체크 ④ -->
+<section class="interact">
+  <div class="interact-icon">🚀</div>
+  <h2>GPTs 만들 준비 되셨나요?</h2>
+  <p class="interact-sub">채팅에 GO! 남겨주세요</p>
+  <div class="interact-btns">
+    <div class="interact-btn btn-yes">🔥 GO!</div>
+    <div class="interact-btn btn-no">😅 아직요...</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 실습 2 (47~51)                                                 -->
+<!-- ============================================================ -->
+
+<!-- 47. 실습 타이틀 -->
+<section>
+  <div class="badge badge-mint">PRACTICE 2 · 15분</div>
+  <div class="section-title">GPTs 만들기 실습</div>
+  <p class="section-sub">'대화로 만들기' 방식으로 나만의 GPTs를 직접 만들어봅니다</p>
+</section>
+
+<!-- 48. Step 1 -->
+<section>
+  <div class="badge badge-mint">STEP 1</div>
+  <h2>GPT 만들기 화면 <span class="hu u-mint d1">접속</span></h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <div class="step">
+      <div class="step-n n-mint">1</div>
+      <div class="step-body">
+        <h4>ChatGPT 왼쪽 사이드바</h4>
+        <p>"GPT 탐색" 클릭</p>
+      </div>
+    </div>
+    <div class="step mt12">
+      <div class="step-n n-mint">2</div>
+      <div class="step-body">
+        <h4>상단 "+ 만들기(Create)" 클릭</h4>
+        <p>"만들기" 탭 선택</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 49. Step 2 -->
+<section>
+  <div class="badge badge-mint">STEP 2</div>
+  <h2>원하는 GPTs를 <span class="hc c-mint d1">설명</span></h2>
+  <div class="card mt20" style="max-width:580px; margin-left:auto; margin-right:auto;">
+    <p class="dim small mb8">아래 템플릿을 참고해서 GPT 빌더에게 설명하세요</p>
+    <div class="code-box" style="font-size:0.65em;">역할: [예: 한국어 블로그 글쓰기 코치]
+대상: [예: SNS 마케팅이 처음인 자영업자]
+목표: [예: 실제로 올릴 수 있는 블로그 글 초안 작성]
+규칙:
+- 항상 한국어로 답변
+- 쉬운 말로 설명
+- 답변은 바로 복사해서 사용 가능하게
+금지: 영어 사용, 너무 긴 답변<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
+  </div>
+</section>
+
+<!-- 50. Step 3-4 -->
+<section>
+  <div class="badge badge-mint">STEP 3~4</div>
+  <h2>빌더 응답 → <span class="hu u-mint d1">테스트 & 저장</span></h2>
+  <div class="grid-2 mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
+    <div class="card">
+      <div class="step">
+        <div class="step-n n-mint">3</div>
+        <div class="step-body">
+          <h4>GPT 빌더 질문에 응답</h4>
+          <p>이름, 아이콘, 세부 규칙을 물어봅니다.<br><span class="hh h-mint d2">한국어로 자유롭게</span> 답하세요!</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="step">
+        <div class="step-n n-mint">4</div>
+        <div class="step-body">
+          <h4>미리보기에서 테스트 후 저장</h4>
+          <p>"만들기" → <span class="hb c-mint d3">"나만(Only me)"</span><br>→ 저장 완료!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 51. 소통 체크 ⑤ -->
+<section class="interact">
+  <div class="interact-icon">🎉</div>
+  <h2>GPTs 만드신 분!</h2>
+  <p class="interact-sub">채팅에 GPTs 이름을 공유해주세요!</p>
+  <div class="interact-btns">
+    <div class="interact-btn btn-yes">✅ 만들었어요!</div>
+    <div class="interact-btn btn-no">🔧 아직 만드는 중</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 클로징 (52~56)                                                 -->
+<!-- ============================================================ -->
+
+<!-- 52. 적용 미션 -->
+<section>
+  <div class="badge badge-orange">MISSION</div>
+  <h2>수업 후 <span class="hu u-orange d1">적용 미션</span></h2>
+  <div class="mission-grid">
+    <div class="mission-card">
+      <h3>미션 1 — 맞춤 설정 업그레이드</h3>
+      <p>
+        오늘 작성한 맞춤 설정을 <strong>일주일간</strong> 실제로 사용하면서,<br>
+        불편한 점을 발견할 때마다 수정해 보세요.<br><br>
+        예: "답변이 너무 길다" → "5문장 이내로" 추가
+      </p>
+    </div>
+    <div class="mission-card">
+      <h3>미션 2 — GPTs <span class="hc c-orange d2">2호</span> 만들기</h3>
+      <p>
+        반복되는 작업을 하나 더 골라<br>
+        두 번째 GPTs를 직접 만들어 보세요.<br><br>
+        아이디어: 영어 코치 / 메뉴 추천 / 교정 도우미 / 회의 준비 비서
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 53. 단톡방 운영 안내 -->
+<section>
+  <div class="badge badge-mint">COMMUNITY</div>
+  <h2>카카오 오픈채널 <span class="hu u-mint d1">안내</span></h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <p style="font-size:0.8em; line-height:1.8;">
+      교육이 끝이 아닙니다.<br>
+      AI 관련 정보를 서로 소통하며, 함께 발전하는 공간입니다.<br><br>
+      <strong>잔류 혜택:</strong><br>
+      개발 마무리 단계에 있는 공방 사장님들을 위한 웹서비스<br>
+      <span class="hb c-mint d2">핸즈룸</span> 런칭 시 <span class="hh h-mint d3">무료 사용 1개월 추가</span> 증정!
+    </p>
+  </div>
+</section>
+
+<!-- 54. 2일차 예고 -->
+<section>
+  <div class="badge badge-orange">TOMORROW · DAY 2</div>
+  <h2>내일 강의 <span class="hh h-yellow d1">미리보기</span></h2>
+  <div class="timeline mt20">
+    <div class="tl-item">🎨 AI 이미지 생성</div>
+    <div class="tl-arrow">→</div>
+    <div class="tl-item">🎬 영상 제작</div>
+    <div class="tl-arrow">→</div>
+    <div class="tl-item">📱 QR코드 만들기</div>
+  </div>
+  <div class="card mt20" style="max-width:450px; margin-left:auto; margin-right:auto; text-align:center;">
+    <p style="font-size:0.85em; font-weight:700; line-height:1.8;">
+      <span class="hb d2">꼭 참석하세요!</span><br>
+      <span class="dim small">2일 모두 들어야 완성되는 과정입니다</span>
+    </p>
+  </div>
+</section>
+
+<!-- 55. 후기 이벤트 -->
+<section>
+  <div class="badge badge-orange">EVENT</div>
+  <h2>후기 이벤트</h2>
+  <div class="card mt20" style="max-width:450px; margin-left:auto; margin-right:auto; text-align:center;">
+    <p style="font-size:0.85em; line-height:1.8; color:var(--dim);">
+      후기 이벤트 내용은<br>
+      곧 안내드리겠습니다!<br><br>
+      <span class="dim small">🎁 기대해주세요</span>
+    </p>
+  </div>
+</section>
+
+<!-- 56. 감사 인사 -->
+<section>
+  <div class="badge badge-blue">THANK YOU</div>
+  <h2>감사합니다</h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto; text-align:center;">
+    <p style="font-size:0.82em; line-height:1.8;">
+      오늘 배운 <span class="hu d1">맞춤 설정</span> + <span class="hu u-mint d2">GPTs</span> 조합만으로도<br>
+      AI 활용의 실질적인 차이를 만들 수 있습니다.<br><br>
+      <strong>같이 성장해요!</strong>
+    </p>
+  </div>
+</section>
+
+<!-- 57. Q&A -->
+<section class="interact">
+  <div class="interact-icon">💬</div>
+  <h2>Q&A 시간</h2>
+  <p class="interact-sub">궁금한 점이 있으시면 줌 채팅에 자유롭게 질문해주세요!</p>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true, slideNumber: false, transition: 'slide',
+  transitionSpeed: 'default', controls: false,
+  progress: false, center: true, width: 1280, height: 720,
+  margin: 0.04, overview: false, fragments: false,
+  mouseWheel: true
+});
+
+Reveal.on('slidechanged', e => updateProgress());
+Reveal.on('ready', e => {
+  document.getElementById('totalPages').textContent = Reveal.getTotalSlides();
+  updateProgress();
+});
+
+function updateProgress() {
+  const idx = Reveal.getSlidePastCount();
+  const total = Reveal.getTotalSlides();
+  document.getElementById('progressBar').style.width = (idx / (total - 1)) * 100 + '%';
+  document.getElementById('currentPage').textContent = idx + 1;
+}
+
+// === 원본 저장 (복귀용) ===
+const originalHTML = document.querySelector('.reveal .slides').innerHTML;
+let snapshotHTML = originalHTML; // 수정모드 진입 시 스냅샷
+
+// === 좌우 클릭 네비게이션 ===
+document.getElementById('navLeft').addEventListener('click', () => Reveal.prev());
+document.getElementById('navRight').addEventListener('click', () => Reveal.next());
+
+// === 수정 모드 ===
+let editMode = false;
+const editBar = document.getElementById('editBar');
+const editToggle = document.getElementById('editToggle');
+const floatToolbar = document.getElementById('floatToolbar');
+
+function enterEditMode() {
+  editMode = true;
+  snapshotHTML = document.querySelector('.reveal .slides').innerHTML; // 진입 시 스냅샷
+  editBar.classList.add('open');
+  editToggle.classList.add('active');
+  document.body.classList.add('editing-active');
+  makeCurrentEditable();
+}
+
+function exitEditMode(discard) {
+  editMode = false;
+  editBar.classList.remove('open');
+  editToggle.classList.remove('active');
+  document.body.classList.remove('editing-active');
+  floatToolbar.classList.remove('show');
+  document.getElementById('fxPanel').classList.remove('open');
+  document.querySelectorAll('.reveal .slides section').forEach(s => {
+    s.contentEditable = 'false';
+    s.style.cursor = '';
+  });
+  // 저장 안 누르고 닫기 = 수정 버리기
+  if (discard) {
+    document.querySelector('.reveal .slides').innerHTML = snapshotHTML;
+    Reveal.sync();
+    Reveal.slide(Reveal.getState().indexh);
+  }
+}
+
+function makeCurrentEditable() {
+  document.querySelectorAll('.reveal .slides section').forEach(s => {
+    s.contentEditable = 'false';
+    s.style.cursor = '';
+  });
+  const current = Reveal.getCurrentSlide();
+  if (current && editMode) {
+    current.contentEditable = 'true';
+    current.style.cursor = 'text';
+  }
+}
+
+// ⚙ 버튼 = 수정모드 토글
+editToggle.addEventListener('click', () => {
+  if (editMode) exitEditMode();
+  else enterEditMode();
+});
+
+// 상단 바 버튼들
+document.getElementById('btnSave').addEventListener('click', () => {
+  const slides = document.querySelectorAll('.reveal .slides section');
+  const data = {};
+  slides.forEach((s, i) => data[i] = s.innerHTML);
+  localStorage.setItem('markclass_edits', JSON.stringify(data));
+  alert('저장 완료!');
+});
+
+document.getElementById('btnReset').addEventListener('click', () => {
+  if (confirm('모든 수정을 원래대로 되돌리시겠습니까?')) {
+    localStorage.removeItem('markclass_edits');
+    document.querySelector('.reveal .slides').innerHTML = originalHTML;
+    Reveal.sync();
+    Reveal.slide(Reveal.getState().indexh);
+    exitEditMode();
+  }
+});
+
+document.getElementById('btnEditClose').addEventListener('click', () => exitEditMode(true)); // 닫기 = 저장 안한 수정 버림
+
+// === 효과설정 패널 ===
+document.getElementById('btnFxPanel').addEventListener('click', () => {
+  document.getElementById('fxPanel').classList.toggle('open');
+});
+document.getElementById('fxPanelClose').addEventListener('click', () => {
+  document.getElementById('fxPanel').classList.remove('open');
+});
+
+// 효과 종류 선택
+document.querySelectorAll('.fx-pick').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.fx-pick').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// 딜레이 선택
+document.querySelectorAll('.fx-delay').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.fx-delay').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// 효과 적용
+document.getElementById('fxApply').addEventListener('click', () => {
+  const sel = window.getSelection();
+  if (!sel.rangeCount || sel.isCollapsed) { alert('텍스트를 먼저 드래그해주세요'); return; }
+
+  const activeFx = document.querySelector('.fx-pick.active');
+  const activeDelay = document.querySelector('.fx-delay.active');
+  if (!activeFx) return;
+
+  const fxType = activeFx.dataset.type;
+  const delay = activeDelay ? activeDelay.dataset.delay : '';
+
+  try {
+    const range = sel.getRangeAt(0);
+    const span = document.createElement('span');
+    fxType.split(' ').forEach(c => span.classList.add(c));
+    if (delay) span.classList.add(delay);
+    if (fxType.startsWith('hb')) span.style.margin = '0 8px';
+    if (fxType.startsWith('hc')) span.style.margin = '0 10px';
+    range.surroundContents(span);
+    sel.removeAllRanges();
+  } catch(e) { alert('효과를 적용할 수 없는 영역입니다. 단일 요소 내 텍스트를 선택해주세요.'); }
+});
+
+// 효과 제거
+document.getElementById('fxRemove').addEventListener('click', () => {
+  const sel = window.getSelection();
+  if (!sel.rangeCount || sel.isCollapsed) { alert('효과가 적용된 텍스트를 드래그해주세요'); return; }
+  const range = sel.getRangeAt(0);
+  const parent = range.startContainer.parentElement;
+  if (parent && (parent.classList.contains('hb') || parent.classList.contains('hc') || parent.classList.contains('hu') || parent.classList.contains('hh') || parent.classList.contains('hs'))) {
+    const text = document.createTextNode(parent.textContent);
+    parent.parentNode.replaceChild(text, parent);
+  }
+});
+
+// 페이지 넘기면 현재 슬라이드 편집 가능하게
+Reveal.on('slidechanged', () => {
+  if (editMode) makeCurrentEditable();
+  floatToolbar.classList.remove('show');
+});
+
+// === 저장된 수정 복원 (버전 관리) ===
+const SAVE_VERSION = 'v2';
+(function loadEdits() {
+  const ver = localStorage.getItem('markclass_version');
+  if (ver !== SAVE_VERSION) { localStorage.removeItem('markclass_edits'); localStorage.setItem('markclass_version', SAVE_VERSION); return; }
+  const raw = localStorage.getItem('markclass_edits');
+  if (!raw) return;
+  try {
+    const data = JSON.parse(raw);
+    const slides = document.querySelectorAll('.reveal .slides > section');
+    slides.forEach((s, i) => { if (data[i]) s.innerHTML = data[i]; });
+  } catch(e) {}
+})();
+
+// === 플로팅 서식 툴바 (텍스트 선택 시 나타남) ===
+document.addEventListener('mouseup', e => {
+  if (!editMode) return;
+  // 툴바 내부 클릭이면 무시
+  if (floatToolbar.contains(e.target)) return;
+
+  setTimeout(() => {
+    const sel = window.getSelection();
+    if (sel.rangeCount > 0 && !sel.isCollapsed) {
+      const range = sel.getRangeAt(0);
+      const rect = range.getBoundingClientRect();
+      floatToolbar.style.left = Math.max(10, rect.left + rect.width / 2 - 150) + 'px';
+      floatToolbar.style.top = Math.max(50, rect.top - 46) + 'px';
+      floatToolbar.classList.add('show');
+    } else {
+      floatToolbar.classList.remove('show');
+    }
+  }, 10);
+});
+
+// 글씨 크기 변경
+document.getElementById('ftFontSize').addEventListener('change', e => {
+  const v = e.target.value;
+  if (!v) return;
+  document.execCommand('fontSize', false, '7');
+  document.querySelectorAll('font[size="7"]').forEach(f => {
+    f.removeAttribute('size');
+    f.style.fontSize = v + 'px';
+  });
+  e.target.value = '';
+});
+
+// 볼드
+document.getElementById('ftBold').addEventListener('click', () => {
+  document.execCommand('bold');
+});
+
+// 글씨 색
+document.getElementById('ftColor').addEventListener('input', e => {
+  document.execCommand('foreColor', false, e.target.value);
+});
+
+// 효과 추가/제거
+document.querySelectorAll('.ft-btn[data-fx]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const fx = btn.dataset.fx;
+    const sel = window.getSelection();
+    if (!sel.rangeCount || sel.isCollapsed) return;
+
+    if (fx === 'remove') {
+      const range = sel.getRangeAt(0);
+      const parent = range.startContainer.parentElement;
+      if (parent && (parent.classList.contains('hb') || parent.classList.contains('hc') || parent.classList.contains('hu') || parent.classList.contains('hh') || parent.classList.contains('hs'))) {
+        const text = document.createTextNode(parent.textContent);
+        parent.parentNode.replaceChild(text, parent);
+      }
+      return;
+    }
+
+    try {
+      const range = sel.getRangeAt(0);
+      const span = document.createElement('span');
+      fx.split(' ').forEach(c => span.classList.add(c));
+      if (fx === 'hb') span.style.margin = '0 8px';
+      if (fx === 'hc') span.style.margin = '0 10px';
+      range.surroundContents(span);
+      sel.removeAllRanges();
+    } catch(e) {}
+  });
+});
+
+// === 커스텀 전체보기 + 드래그 앤 드롭 ===
+let dragSrcIdx = null;
+
+function buildOverview() {
+  const grid = document.getElementById('overviewGrid');
+  grid.innerHTML = '';
+  const slides = document.querySelectorAll('.reveal .slides > section');
+  const currentIdx = Reveal.getState().indexh;
+
+  slides.forEach((slide, i) => {
+    const item = document.createElement('div');
+    item.className = 'overview-item' + (i === currentIdx ? ' active' : '');
+    item.draggable = true;
+    item.dataset.idx = i;
+
+    const num = document.createElement('div');
+    num.className = 'overview-num';
+    num.textContent = (i + 1);
+    item.appendChild(num);
+
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'width:1280px;height:720px;transform-origin:0 0;pointer-events:none;padding:30px 50px;box-sizing:border-box;font-family:Pretendard Variable,sans-serif;font-size:18px;text-align:center;display:flex;flex-direction:column;justify-content:center;overflow:hidden;';
+    wrapper.innerHTML = slide.innerHTML;
+    item.appendChild(wrapper);
+
+    // 클릭 = 해당 페이지로 이동
+    item.addEventListener('click', () => {
+      Reveal.slide(i);
+      closeOverview();
+    });
+
+    // 드래그 시작
+    item.addEventListener('dragstart', e => {
+      dragSrcIdx = parseInt(item.dataset.idx);
+      item.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    item.addEventListener('dragend', () => {
+      item.classList.remove('dragging');
+      grid.querySelectorAll('.overview-item').forEach(el => el.classList.remove('drag-over'));
+    });
+
+    // 드래그 오버
+    item.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      item.classList.add('drag-over');
+    });
+    item.addEventListener('dragleave', () => {
+      item.classList.remove('drag-over');
+    });
+
+    // 드롭 = 순서 변경
+    item.addEventListener('drop', e => {
+      e.preventDefault();
+      const dropIdx = parseInt(item.dataset.idx);
+      if (dragSrcIdx === null || dragSrcIdx === dropIdx) return;
+
+      // 실제 슬라이드 DOM 순서 변경
+      const slidesContainer = document.querySelector('.reveal .slides');
+      const allSections = [...slidesContainer.querySelectorAll(':scope > section')];
+      const draggedSection = allSections[dragSrcIdx];
+      const targetSection = allSections[dropIdx];
+
+      if (dragSrcIdx < dropIdx) {
+        slidesContainer.insertBefore(draggedSection, targetSection.nextSibling);
+      } else {
+        slidesContainer.insertBefore(draggedSection, targetSection);
+      }
+
+      Reveal.sync();
+      Reveal.slide(dropIdx);
+      buildOverview(); // 전체보기 다시 그리기
+    });
+
+    grid.appendChild(item);
+  });
+
+  requestAnimationFrame(() => {
+    const items = grid.querySelectorAll('.overview-item');
+    items.forEach(item => {
+      const w = item.offsetWidth;
+      const scale = w / 1280;
+      const wrapper = item.querySelector('div:last-child');
+      if (wrapper) {
+        wrapper.style.transform = 'scale(' + scale + ')';
+        item.style.height = (720 * scale) + 'px';
+      }
+    });
+  });
+}
+
+function openOverview() {
+  buildOverview();
+  document.getElementById('overviewOverlay').classList.add('open');
+}
+function closeOverview() {
+  document.getElementById('overviewOverlay').classList.remove('open');
+}
+
+document.getElementById('overviewToggle').addEventListener('click', () => openOverview());
+document.getElementById('overviewClose').addEventListener('click', () => closeOverview());
+
+// === 복사 ===
+function copyCode(btn) {
+  const code = btn.parentElement.textContent.replace('복사','').replace('복사됨!','').trim();
+  navigator.clipboard.writeText(code).then(() => {
+    btn.textContent = '복사됨!';
+    setTimeout(() => btn.textContent = '복사', 1500);
+  });
+}
+</script>
+</body>
+</html>
