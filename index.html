@@ -389,7 +389,7 @@
 </div>
 
 <button class="page-btn" id="overviewToggle">
-  <span class="cp" id="currentPage">1</span><span> / </span><span id="totalPages">56</span>
+  <span class="cp" id="currentPage">1</span><span> / </span><span id="totalPages">59</span>
   <span style="margin-left:4px;">전체보기</span>
 </button>
 
@@ -467,11 +467,14 @@
 <!-- 5. 단톡방 소개 -->
 <section>
   <div class="badge badge-mint">COMMUNITY</div>
-  <h2>카카오 오픈채널 소개</h2>
+  <h2>카카오 오픈채널 <span class="hu u-mint d1">안내</span></h2>
   <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
-    <p style="font-size:0.8em; color:var(--dim); line-height:1.8;">
+    <p style="font-size:0.8em; line-height:1.8;">
       교육이 끝이 아닙니다.<br>
-      AI 관련 정보를 서로 소통하며, <span class="hu u-mint d1">함께 발전</span>하기 위한 공간입니다.
+      AI 관련 정보를 서로 소통하며, 함께 발전하는 공간입니다.<br><br>
+      <strong>잔류 혜택:</strong><br>
+      개발 마무리 단계에 있는 공방 사장님들을 위한 웹서비스<br>
+      <span class="hb c-mint d2">핸즈룸</span> 런칭 시 <span class="hh h-mint d3">무료 사용 1개월 추가</span> 증정!
     </p>
   </div>
 </section>
@@ -627,14 +630,22 @@
   <h2><span class="hb c-accent d1">맞춤 설정</span> 이란?</h2>
   <div class="card mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
     <p style="font-size:0.8em; line-height:1.8;">
-      모든 대화에 <span class="hh h-yellow d2">자동으로 적용</span>되는<br>
-      나만의 배경 정보와 응답 규칙<br><br>
+      <strong style="font-size:1.15em;">"<span class="hh h-yellow d2">AI를 나에게 맞는 직원</span>처럼 만드는 설정"</strong><br><br>
       한번 설정하면 새 대화를 열 때마다 ChatGPT가 자동으로 참조합니다.<br>
       매번 "한국어로 답해줘", "나는 이런 사람이야"를<br>
       <span class="hs d3">반복할 필요가 사라집니다.</span>
     </p>
   </div>
-  <p class="dim small mt12">출처: OpenAI 공식 블로그, "Custom Instructions for ChatGPT" (2023.07)</p>
+  <div class="compare-wrap mt20">
+    <div class="compare-box" style="min-width:220px;">
+      <h3>기본 ChatGPT</h3>
+      <p class="dim small"><span class="hs d1">평균적인 답변</span></p>
+    </div>
+    <div class="compare-box" style="min-width:220px;">
+      <h3>맞춤설정 적용</h3>
+      <p class="dim small"><span class="hh h-mint d2">내 업종 + 내 스타일</span> 반영된 답변</p>
+    </div>
+  </div>
 </section>
 
 <!-- 14. 비유로 이해하기 -->
@@ -669,27 +680,28 @@
   <div class="compare-wrap">
     <div class="compare-box">
       <h3>❌ 맞춤 설정 전</h3>
-      <div class="code-box" style="font-size:0.65em;">Here are some tips for writing
-a great blog post:
-1. Choose a compelling topic
-2. Write an engaging headline...</div>
+      <div class="code-box" style="font-size:0.65em;">블로그 글을 잘 쓰려면:
+1. 흥미로운 제목을 정하세요
+2. 독자의 관심을 끄는 도입부를 쓰세요
+3. 핵심 내용을 정리하세요...</div>
       <ul style="margin-top:8px;">
-        <li>영어로 답변</li>
+        <li><span class="hs d1">누구에게나 하는 일반론</span></li>
         <li>내 상황 무관</li>
-        <li>일반적 내용</li>
+        <li>바로 쓸 수 없음</li>
       </ul>
     </div>
     <div class="compare-box">
       <h3>✅ 맞춤 설정 후</h3>
-      <div class="code-box" style="font-size:0.65em;">🌸 이번 주 꽃집 블로그 글 초안
+      <div class="code-box" style="font-size:0.65em;">🕯 이번 주 공방 블로그 글 초안
 
-제목: "봄맞이 꽃다발, 어떤 꽃이 좋을까?"
+제목: "핸드메이드 캔들, 집에서 만드는 향기"
 
-안녕하세요, ○○플라워입니다...</div>
+안녕하세요, ○○공방입니다.
+이번 주 체험 클래스 예약이...</div>
       <ul style="margin-top:8px;">
-        <li><span class="hh h-mint d2">한국어 답변</span></li>
-        <li>내 업종 맞춤</li>
-        <li>바로 사용 가능</li>
+        <li><span class="hh h-mint d2">내 업종(공방) 맞춤</span></li>
+        <li>키워드 + 감성 포함</li>
+        <li>바로 복사해서 사용 가능</li>
       </ul>
     </div>
   </div>
@@ -709,16 +721,17 @@ a great blog post:
 <!-- 17. 맞춤 설정 구조 -->
 <section>
   <div class="badge badge-blue">STRUCTURE</div>
-  <h2>맞춤 설정의 <span class="hu d1">구조</span></h2>
+  <h2>맞춤 설정 = <span class="hu d1">딱 2가지</span></h2>
+  <p class="dim small mb8">이 두 가지가 <span class="hb d1">모든 결과를 결정</span>합니다</p>
   <div class="grid-2" style="max-width:700px; margin-left:auto; margin-right:auto;">
     <div class="mock-ui">
-      <div class="mock-label">입력란 1 — <span class="hh h-blue d2">나에 대한 정보</span></div>
-      <div class="mock-input">저는 소규모 꽃집을 운영하는 자영업자입니다. 꽃 배달 서비스를 준비 중이고, SNS 마케팅에 관심이 많습니다.</div>
+      <div class="mock-label">① <span class="hh h-blue d2">내 추가 정보</span> — "나는 누구인가"</div>
+      <div class="mock-input">나는 한국에서 공방을 운영하는 소상공인이다. 주로 수공예 제품(비누, 캔들, 도자기 등)을 판매한다.</div>
       <p class="dim" style="font-size:0.6em;">1,500자 제한</p>
     </div>
     <div class="mock-ui">
-      <div class="mock-label">입력란 2 — <span class="hh h-mint d3">원하는 응답 방식</span></div>
-      <div class="mock-input">항상 한국어로 답변해 주세요. 어려운 용어가 나오면 쉬운 말로 풀어서 설명해 주세요.</div>
+      <div class="mock-label">② <span class="hh h-mint d3">맞춤형 지침</span> — "AI는 어떻게 답해야 하는가"</div>
+      <div class="mock-input">바로 실행 가능한 형태로 작성. 핵심 먼저 제시. 예시를 반드시 포함. 초보자도 이해할 수 있게 설명.</div>
       <p class="dim" style="font-size:0.6em;">1,500자 제한</p>
     </div>
   </div>
@@ -754,117 +767,131 @@ a great blog post:
   </div>
 </section>
 
-<!-- 19. 입력란 1 - 4가지 핵심 -->
+<!-- 19. 내 추가 정보 (정체성 입력) -->
 <section>
-  <div class="badge badge-blue">입력란 1</div>
-  <h2>나에 대한 정보: <span class="hc d1">4가지</span> 핵심</h2>
+  <div class="badge badge-blue">1단계 · 내 추가 정보</div>
+  <h2>나는 <span class="hc d1">누구인가</span> — 정체성 입력</h2>
+  <p class="dim small mb8">초보자 기준 → <span class="hu u-orange d1">반드시 구체화</span></p>
   <div class="stat-grid">
     <div class="stat-card" style="text-align:center; padding:20px 24px;">
       <div style="font-size:1.2em; margin-bottom:4px;">💼</div>
       <div style="font-size:0.82em; font-weight:700;">내가 하는 일</div>
-      <div class="stat-desc">직업, 역할, 직책</div>
+      <div class="stat-desc">공방 운영, 수공예 판매</div>
     </div>
     <div class="stat-card" style="text-align:center; padding:20px 24px;">
       <div style="font-size:1.2em; margin-bottom:4px;">🎯</div>
-      <div style="font-size:0.82em; font-weight:700;">관심사 / 목적</div>
-      <div class="stat-desc">현재 집중하는 일</div>
+      <div style="font-size:0.82em; font-weight:700;">목표</div>
+      <div class="stat-desc">고객 유입, 예약 증가, 매출</div>
     </div>
     <div class="stat-card" style="text-align:center; padding:20px 24px;">
-      <div style="font-size:1.2em; margin-bottom:4px;">🌏</div>
-      <div style="font-size:0.82em; font-weight:700;">선호 언어</div>
-      <div class="stat-desc">한국어 사용 명시</div>
+      <div style="font-size:1.2em; margin-bottom:4px;">🛠</div>
+      <div style="font-size:0.82em; font-weight:700;">AI 활용 목적</div>
+      <div class="stat-desc">콘텐츠 작성, 키워드, 홍보</div>
     </div>
     <div class="stat-card" style="text-align:center; padding:20px 24px;">
       <div style="font-size:1.2em; margin-bottom:4px;">📊</div>
       <div style="font-size:0.82em; font-weight:700;">나의 AI 수준</div>
-      <div class="stat-desc">초보 / 중급 / 전문가</div>
+      <div class="stat-desc">초보 → 쉽게, 단계별로</div>
     </div>
   </div>
 </section>
 
-<!-- 20. 예시 A - 자영업자 -->
+<!-- 20. 내 추가 정보 완성본 (공방 사장님용) -->
 <section>
-  <div class="badge badge-orange">예시 A</div>
-  <h2>자영업자 — <span class="hc c-orange d1">꽃집</span></h2>
-  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
-    <div class="code-box">저는 소규모 꽃집을 운영하는 자영업자입니다.
-현재 꽃 배달 서비스 준비, SNS 마케팅에 집중하고 있습니다.
-한국어로 대화합니다.
-AI는 처음 사용합니다.<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
+  <div class="badge badge-orange">복붙용 완성본</div>
+  <h2>내 추가 정보 — <span class="hc c-orange d1">공방 사장님</span></h2>
+  <div class="card" style="max-width:620px; margin:12px auto 0; padding:14px 18px;">
+    <div class="code-box" style="font-size:0.55em; line-height:1.5; padding:10px 14px;">나는 공방을 운영하는 사장이다.
+주요 목표:
+- 블로그, SNS를 통해 고객 유입을 늘리는 것
+- 체험 예약 및 제품 판매로 연결하는 것
+주요 고객:
+- 20~40대 여성 / 취미, 데이트, 원데이 클래스 관심 고객
+내 공방의 특징:
+- 감성적인 공간 / 초보자도 쉽게 참여 가능 / 사진 찍기 좋은 분위기
+AI를 활용해 하고 싶은 것:
+- 블로그 글 작성 / 인스타그램 콘텐츠 제작
+- 고객 유입 키워드 찾기 / 홍보 문구 만들기
+중요하게 생각하는 것:
+- 실제 고객이 검색하는 키워드
+- 감성 + 정보 전달 / 예약·문의로 이어지는 글<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
+    <p class="dim small mt12">본인 상황에 맞게 바꿔서 사용하세요!</p>
   </div>
 </section>
 
-<!-- 21. 예시 B - 직장인 -->
+<!-- 21-22. 맞춤형 지침 — 4가지 원리 (통합) -->
 <section>
-  <div class="badge badge-blue">예시 B</div>
-  <h2>직장인 — <span class="hc d1">마케팅 팀장</span></h2>
-  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
-    <div class="code-box">저는 중소기업 마케팅 팀장, 7년차입니다.
-현재 보고서 작성, 경쟁사 분석에 집중하고 있습니다.
-한국어로 대화합니다.
-AI를 가끔 사용해 봤습니다.<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
-  </div>
-</section>
-
-<!-- 22. 입력란 2 - 응답 방식 -->
-<section>
-  <div class="badge badge-blue">입력란 2</div>
-  <h2>원하는 <span class="hu d1">응답 방식</span></h2>
+  <div class="badge badge-pink">2단계 · 맞춤형 지침</div>
+  <h2>AI는 <span class="hu d1">어떻게 답해야 하는가</span></h2>
+  <p class="dim small mb8"><span class="hb d1">여기서 결과 퀄리티가 결정됩니다</span> — 4가지 원리</p>
   <div class="stat-grid">
-    <div class="stat-card" style="text-align:center; padding:20px 24px;">
-      <div style="font-size:1.2em; margin-bottom:4px;">📏</div>
-      <div style="font-size:0.82em; font-weight:700;">답변 길이</div>
-      <div class="stat-desc">간결하게 vs 상세하게</div>
+    <div class="stat-card" style="text-align:center; padding:18px 20px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">👤</div>
+      <div style="font-size:0.82em; font-weight:700;"><span class="hu d2">역할 부여</span></div>
+      <div class="stat-desc">"공방 마케팅 전문가"<br>→ 응답 방향 고정</div>
     </div>
-    <div class="stat-card" style="text-align:center; padding:20px 24px;">
-      <div style="font-size:1.2em; margin-bottom:4px;">🗣</div>
-      <div style="font-size:0.82em; font-weight:700;">말투</div>
-      <div class="stat-desc">격식체 vs 친근한 톤</div>
-    </div>
-    <div class="stat-card" style="text-align:center; padding:20px 24px;">
+    <div class="stat-card" style="text-align:center; padding:18px 20px;">
       <div style="font-size:1.2em; margin-bottom:4px;">📋</div>
-      <div style="font-size:0.82em; font-weight:700;">형식</div>
-      <div class="stat-desc">목록 / 표 / 문장형</div>
+      <div style="font-size:0.82em; font-weight:700;"><span class="hu u-orange d2">출력 형식 고정</span></div>
+      <div class="stat-desc">제목 → 요약 → 실행 → 예시<br>→ 매번 같은 품질 유지</div>
     </div>
-    <div class="stat-card" style="text-align:center; padding:20px 24px;">
+    <div class="stat-card" style="text-align:center; padding:18px 20px;">
+      <div style="font-size:1.2em; margin-bottom:4px;">✅</div>
+      <div style="font-size:0.82em; font-weight:700;"><span class="hu u-mint d3">행동 기준 명시</span></div>
+      <div class="stat-desc">"핵심 먼저", "예시 포함"<br>→ 반복 질문 감소</div>
+    </div>
+    <div class="stat-card" style="text-align:center; padding:18px 20px;">
       <div style="font-size:1.2em; margin-bottom:4px;">🚫</div>
-      <div style="font-size:0.82em; font-weight:700;">금지 사항</div>
-      <div class="stat-desc">이모지 금지, 영어 금지 등</div>
+      <div style="font-size:0.82em; font-weight:700;"><span class="hu u-pink d4">금지 사항</span></div>
+      <div class="stat-desc">불필요한 설명, 영어 등<br>→ 구체적일수록 결과 ↑</div>
     </div>
   </div>
 </section>
 
-<!-- 23. 코드 예시 -->
+<!-- 23. 맞춤형 지침 완성본 (공방 사장님용) -->
 <section>
-  <div class="badge badge-blue">입력란 2 예시</div>
-  <h2>이렇게 작성하세요</h2>
-  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
-    <div class="code-box">항상 한국어로 답변해 주세요.
-어려운 용어가 나오면 쉬운 말로 풀어서 설명해 주세요.
-답변은 목록 형태로 정리해 주세요.
-이모지는 사용하지 마세요.<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
-  </div>
-  <div class="tip-box mt12" style="max-width:550px; margin-left:auto; margin-right:auto;">
-    💡 <span class="hu u-mint d1">구체적으로</span> 쓸수록 결과가 좋습니다.<br>
-    "직장인"보다 "중소기업 마케팅 팀장"이 훨씬 정확한 답변을 이끌어냅니다.
+  <div class="badge badge-orange">복붙용 완성본</div>
+  <h2>맞춤형 지침 — <span class="hc c-orange d1">공방 사장님</span></h2>
+  <div class="card" style="max-width:620px; margin:12px auto 0; padding:14px 18px;">
+    <div class="code-box" style="font-size:0.55em; line-height:1.5; padding:10px 14px;">너는 공방 마케팅 전문가다.
+목표는 공방 사장의 고객 유입과 매출 증가다.
+모든 답변은 반드시 실무에서 바로 사용할 수 있는 형태로 제공한다.
+답변은 항상 아래 구조를 따른다:
+1. 핵심 요약  2. 실행 단계  3. 바로 사용 가능한 예시  4. 추가 활용 팁
+규칙:
+- 추측하거나 모호하게 말하지 말 것
+- 반드시 실제 실행 가능한 형태로 작성할 것
+- 고객이 검색하는 키워드를 중심으로 구성할 것
+- 결과물은 바로 복사해서 사용할 수 있게 만들 것
+항상 포함할 요소:
+- 고객 유입 키워드 / 클릭 유도 제목 / 감성+정보 표현 / 예약·문의 마무리
+블로그 → 제목, 도입, 본문, 마무리 완성형 작성
+키워드 → 검색 기반 TOP5 + 활용법
+SNS → 짧고 강한 문장 + 저장/공유 유도 문구<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
   </div>
 </section>
 
-<!-- 24. 주의사항 & 팁 -->
+<!-- 24. 주의사항 & 한계 & 초보자 실수 -->
 <section>
   <div class="badge badge-pink">NOTICE</div>
-  <h2>주의사항 & 팁</h2>
-  <div class="grid-2 mt20" style="max-width:650px; margin-left:auto; margin-right:auto;">
+  <h2>주의사항 & <span class="hu u-pink d1">초보자 실수</span></h2>
+  <div class="grid-2 mt20" style="max-width:700px; margin-left:auto; margin-right:auto;">
     <div class="warn-box" style="margin-top:0;">
-      ⚠️ <strong>주의</strong><br><br>
-      맞춤 설정은 <span class="hb d1">새 대화를 열어야</span> 적용됩니다.<br>
-      기존에 열려 있는 대화에는 반영되지 않습니다.
+      ⚠️ <strong>한계 & 주의</strong><br><br>
+      100% 정확 보장 X — 잘못된 정보 생성 가능<br>
+      <span class="hb d1">민감 정보 입력 금지</span><br>
+      너무 길게 쓰면 효과 ↓ (1,500자 제한)<br>
+      <span class="hu u-pink d2">새 대화를 열어야</span> 적용됩니다
     </div>
     <div class="tip-box" style="margin-top:0;">
-      💡 <strong>팁</strong><br><br>
-      원하지 않는 것도 명시하면 효과적입니다.<br>
-      예: "<span class="hu u-pink d2">영어 섞지 마세요</span>"
+      💡 <strong>초보자가 가장 많이 하는 실수</strong><br><br>
+      ❌ 아무 설정 없이 사용<br>
+      ❌ 질문만 계속 바꿈<br><br>
+      👉 <strong>해결:</strong> 맞춤설정 = <span class="hh h-mint d3">"한 번 세팅하면 끝"</span>
     </div>
+  </div>
+  <div class="tip-box mt12" style="max-width:700px; margin-left:auto; margin-right:auto; text-align:center;">
+    <strong>"맞춤설정은 AI를 <span class="hu d1">'내 사업에 맞는 직원'</span>으로 만드는 가장 중요한 기능이다"</strong>
   </div>
 </section>
 
@@ -922,25 +949,48 @@ AI를 가끔 사용해 봤습니다.<button class="copy-btn" onclick="copyCode(t
 <!-- 28. Step 3 -->
 <section>
   <div class="badge badge-mint">STEP 3</div>
-  <h2>입력란 1: <span class="hu u-mint d1">나에 대한 정보</span></h2>
-  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
-    <div class="code-box">저는 [직업/역할]을 하고 있습니다.
-현재 [관심사 또는 하고 있는 일]에 집중하고 있습니다.
-한국어로 대화합니다.
-AI는 [처음 사용합니다 / 가끔 사용해 봤습니다].<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
-    <p class="dim small mt12">[ ] 안의 내용을 본인 상황에 맞게 바꿔서 작성하세요!</p>
+  <h2>내 추가 정보: <span class="hu u-mint d1">나에 대한 정보</span></h2>
+  <div class="card mt20" style="max-width:580px; margin-left:auto; margin-right:auto;">
+    <div class="code-box" style="font-size:0.55em; line-height:1.5; padding:10px 14px;">나는 [직업/업종]을 운영하는 사람이다.
+주요 목표는 다음과 같다:
+- [목표1]
+- [목표2]
+주요 고객은 다음과 같다:
+- [연령/성별]
+- [관심사/니즈]
+내 서비스/제품의 특징:
+- [특징1]
+- [특징2]
+- [차별점]
+나는 AI를 활용해 다음을 하고 싶다:
+- [활용1]
+- [활용2]
+중요하게 생각하는 것은:
+- [핵심 기준1]
+- [핵심 기준2]<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
+    <p class="dim small mt12">[ ] 안의 내용을 본인 상황에 맞게 바꿔서 사용하세요!</p>
   </div>
 </section>
 
 <!-- 29. Step 4 -->
 <section>
   <div class="badge badge-mint">STEP 4</div>
-  <h2>입력란 2: <span class="hu u-mint d1">응답 방식</span></h2>
-  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
-    <div class="code-box">항상 한국어로 답변해 주세요.
-어려운 용어가 나오면 쉬운 말로 풀어서 설명해 주세요.
-답변은 [간결하게 / 자세하게] 해 주세요.<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
-    <p class="dim small mt12">원하는 스타일에 맞게 수정하세요!</p>
+  <h2>맞춤형 지침: <span class="hu u-mint d1">행동·스타일·어조</span></h2>
+  <div class="card mt20" style="max-width:580px; margin-left:auto; margin-right:auto;">
+    <div class="code-box" style="font-size:0.55em; line-height:1.5; padding:10px 14px;">너는 [직무/분야] 전문가다.
+목표는 [성과/결과]를 만들어내는 것이다.
+모든 답변은 실무에서 바로 사용할 수 있는 형태로 제공한다.
+답변은 항상 아래 구조를 따른다:
+1. 핵심 요약  2. 실행 단계  3. 바로 사용 가능한 예시  4. 추가 활용 팁
+규칙:
+- 모호한 표현 금지 / 실행 불가능한 내용 금지
+- 결과물은 바로 복사해서 사용할 수 있어야 한다
+항상 포함할 요소:
+- 고객 관점의 메시지 / 행동을 유도하는 문장 (예약, 구매, 문의 등)
+[콘텐츠 작성] → 제목 + 도입 + 본문 + 마무리 구조
+[키워드] → 검색 기반 TOP5 + 활용법
+[SNS] → 짧고 강한 문장 + 저장/공유 유도 문구<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
+    <p class="dim small mt12">[ ] 안의 내용을 본인 상황에 맞게 바꿔서 사용하세요!</p>
   </div>
 </section>
 
@@ -1023,8 +1073,8 @@ AI는 [처음 사용합니다 / 가끔 사용해 봤습니다].<button class="co
 <!-- 34. 섹션 타이틀 -->
 <section>
   <div class="badge badge-mint">PART 2 · 50분</div>
-  <div class="section-title">나에게 맞는<br><span class="hh h-mint d1">GPTs</span> 만들기</div>
-  <p class="section-sub">특정 업무에 최적화된 나만의 AI 비서를 직접 만듭니다</p>
+  <div class="section-title"><span class="hh h-mint d1">반복 일을 대신해주는</span><br>나만의 AI 직원 만들기</div>
+  <p class="section-sub">GPTs = 업무 자동화 도구 · 직접 만들어봅니다</p>
 </section>
 
 <!-- 35. GPTs란? -->
@@ -1033,50 +1083,40 @@ AI는 [처음 사용합니다 / 가끔 사용해 봤습니다].<button class="co
   <h2><span class="hc c-mint d1">GPTs</span> 란?</h2>
   <div class="card mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
     <p style="font-size:0.8em; line-height:1.8;">
-      특정 목적에 맞게 역할, 규칙, 지식을<br>
-      <span class="hh h-mint d2">미리 설정해 둔</span> 맞춤형 ChatGPT 챗봇<br><br>
+      <strong style="font-size:1.1em;">"프롬프트를 저장하는 게 아니라, <span class="hh h-mint d2">업무를 자동화</span>하는 AI 시스템"</strong><br><br>
+      역할 + 규칙 + 지식을 미리 설정해 둔 맞춤형 챗봇<br>
       한 번 만들어두면 열자마자 전문적인 도움을 받을 수 있습니다.<br>
-      파일(PDF, 엑셀 등)을 학습시킬 수도 있습니다.
+      파일(PDF, 메뉴판, 블로그 글 등)을 <span class="hu u-mint d3">학습시킬 수도</span> 있습니다.
     </p>
   </div>
-  <p class="dim small mt12">출처: OpenAI, GPTs 기능 공개 (2023.11)</p>
 </section>
 
-<!-- 36. 비유로 이해하기 -->
+<!-- 36. 일반 ChatGPT vs GPTs 비교표 -->
 <section>
-  <div class="badge badge-mint">ANALOGY</div>
-  <h2>비유로 이해하기</h2>
-  <div class="compare-wrap">
-    <div class="compare-box">
-      <h3>👤 일반 ChatGPT = <span class="hh h-blue d1">만능 직원</span></h3>
-      <ul>
-        <li>뭐든 할 수 있지만</li>
-        <li>매번 업무 배경과 규칙을</li>
-        <li>처음부터 설명해야 합니다</li>
-      </ul>
-    </div>
-    <div class="compare-box">
-      <h3>⭐ GPTs = <span class="hc c-mint d2">전문 담당자</span></h3>
-      <ul>
-        <li>자기 업무를 이미 파악</li>
-        <li>간단한 지시만으로</li>
-        <li>원하는 결과를 즉시 생성</li>
-      </ul>
-    </div>
+  <div class="badge badge-mint">COMPARISON</div>
+  <h2>일반 ChatGPT vs <span class="hc c-mint d1">GPTs</span></h2>
+  <div class="card mt20" style="max-width:650px; margin-left:auto; margin-right:auto;">
+    <table class="tbl">
+      <tr><th>구분</th><th>일반 ChatGPT</th><th><span class="hu u-mint d2">GPTs</span></th></tr>
+      <tr><td>설정</td><td><span class="hs d1">매번 입력</span></td><td>한번 설정</td></tr>
+      <tr><td>역할</td><td>없음</td><td><span class="hh h-mint d2">명확한 역할</span></td></tr>
+      <tr><td>지식</td><td>없음</td><td>파일 업로드 가능</td></tr>
+      <tr><td>활용</td><td>단일 질문</td><td><strong>업무 자동화</strong></td></tr>
+    </table>
+  </div>
+  <div class="tip-box mt12" style="max-width:650px; margin-left:auto; margin-right:auto;">
+    💡 GPTs는 단순한 챗봇이 아니라 <span class="hu u-mint d1">"업무 자동화 도구"</span>에 가깝습니다
   </div>
 </section>
 
-<!-- 37. 맞춤 설정 vs GPTs -->
+<!-- 37. 좋은 GPT 공식 -->
 <section>
-  <div class="badge badge-mint">COMPARISON</div>
-  <h2>맞춤 설정 vs GPTs</h2>
-  <div class="card mt20" style="max-width:650px; margin-left:auto; margin-right:auto;">
-    <table class="tbl">
-      <tr><th>구분</th><th><span class="hu d1">맞춤 설정</span></th><th><span class="hu u-mint d2">GPTs</span></th></tr>
-      <tr><td>적용 범위</td><td>모든 대화에 자동 적용</td><td>해당 GPTs에서만 작동</td></tr>
-      <tr><td>역할</td><td>ChatGPT의 기본 성격</td><td>특정 업무 전용 챗봇</td></tr>
-      <tr><td>비유</td><td>회사 사내 규정</td><td>부서별 업무 매뉴얼</td></tr>
-    </table>
+  <div class="badge badge-mint">FORMULA</div>
+  <h2>좋은 GPT = <span class="hc c-mint d1">핵심 공식</span></h2>
+  <div class="card mt20" style="max-width:650px; margin-left:auto; margin-right:auto; text-align:center;">
+    <p style="font-size:1.1em; font-weight:800; line-height:2;">
+      <span class="hb c-accent d1">역할</span> + <span class="hb c-mint d2">작업</span> + <span class="hb c-orange d3">출력형식</span> + <span class="hb d4">데이터</span> + 제한조건
+    </p>
   </div>
   <div class="tip-box mt12" style="max-width:650px; margin-left:auto; margin-right:auto;">
     💡 <strong>조합 전략:</strong> 맞춤 설정으로 기본 바탕을 깔고, GPTs로 업무별 자동화를 구축
@@ -1125,108 +1165,183 @@ AI는 [처음 사용합니다 / 가끔 사용해 봤습니다].<button class="co
   <div class="card mt20" style="max-width:650px; margin-left:auto; margin-right:auto;">
     <table class="tbl">
       <tr><th>항목</th><th>설명</th></tr>
-      <tr><td><strong>이름</strong></td><td>GPTs의 이름</td></tr>
+      <tr><td><strong>이름</strong></td><td>GPTs의 이름 (예: "공방 블로그 코치")</td></tr>
       <tr><td><strong>설명</strong></td><td>이 GPTs가 하는 일 한 줄 요약</td></tr>
-      <tr><td><strong><span class="hh h-mint d2">지침 (Instructions)</span></strong></td><td>핵심! 역할, 규칙, 말투를 정의</td></tr>
+      <tr><td><strong><span class="hh h-mint d2">지침 (Instructions)</span></strong></td><td>핵심! 역할 + 규칙 + 출력형식 정의</td></tr>
       <tr><td><strong>대화 시작 문구</strong></td><td>사용자에게 보여줄 예시 질문</td></tr>
-      <tr><td><strong>지식</strong></td><td>참고 파일 업로드 (PDF, 엑셀 등)</td></tr>
-      <tr><td><strong>기능</strong></td><td>웹 검색, 이미지 생성, 코드 실행 ON/OFF</td></tr>
+      <tr><td><strong><span class="hh h-yellow d3">지식 (Knowledge)</span></strong></td><td>PDF, 메뉴판, 블로그 글, 가격표 업로드</td></tr>
+      <tr><td><strong>기능 (Tools)</strong></td><td>웹 검색, 이미지 생성, 코드 실행 ON/OFF</td></tr>
     </table>
   </div>
-</section>
-
-<!-- 41. Instructions 작성법 ① -->
-<section>
-  <div class="badge badge-mint">INSTRUCTIONS 1/4</div>
-  <h2><span class="hc c-mint d1">역할</span> 정의</h2>
-  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
-    <p style="font-size:0.8em; line-height:1.8;">
-      무슨 전문가인지 <span class="hu u-mint d2">1문장으로 명확히</span><br><br>
-      "역할이 애매하면 출력도 애매해집니다."
-    </p>
-    <div class="code-box mt12">너는 소규모 자영업자를 위한 SNS 마케팅 전문 코치야.</div>
+  <div class="tip-box mt12" style="max-width:650px; margin-left:auto; margin-right:auto;">
+    💡 Knowledge = <span class="hu u-mint d1">"AI가 내 사업을 이해하게 만드는 단계"</span>
   </div>
 </section>
 
-<!-- 42. Instructions 작성법 ② -->
+<!-- 41. Instructions 작성법 ① - 역할 정의 (가장 중요) -->
 <section>
-  <div class="badge badge-mint">INSTRUCTIONS 2/4</div>
-  <h2><span class="hu u-mint d1">대상 사용자</span> + 목표</h2>
-  <div class="grid-2 mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
+  <div class="badge badge-pink">INSTRUCTIONS 1/5 · 가장 중요!</div>
+  <h2><span class="hc c-mint d1">역할</span> 정의</h2>
+  <p class="dim small mb8"><span class="hb d1">역할이 결과의 50%를 결정</span>합니다</p>
+  <div class="compare-wrap mt20">
+    <div class="compare-box" style="min-width:220px;">
+      <h3>❌ 나쁜 예</h3>
+      <p class="dim small">"블로그 써줘"</p>
+    </div>
+    <div class="compare-box" style="min-width:220px;">
+      <h3>✅ 좋은 예</h3>
+      <p class="dim small">"<span class="hh h-mint d2">공방 마케팅 전문가 + 블로그 코치</span>"</p>
+    </div>
+  </div>
+  <div class="card mt12" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    <div class="code-box">너는 공방 마케팅 전문가이자 블로그 코치다.</div>
+  </div>
+</section>
+
+<!-- 42. Instructions 작성법 ② - 작업 정의 (구체화) -->
+<section>
+  <div class="badge badge-mint">INSTRUCTIONS 2/5</div>
+  <h2><span class="hu u-mint d1">작업</span> 정의 — 구체화</h2>
+  <div class="compare-wrap mt20">
+    <div class="compare-box" style="min-width:220px;">
+      <h3>❌ 나쁜 예</h3>
+      <p class="dim small">"글 써줘"</p>
+    </div>
+    <div class="compare-box" style="min-width:220px;">
+      <h3>✅ 좋은 예</h3>
+      <p class="dim small">"<span class="hh h-mint d2">키워드 + 블로그 글 + CTA</span> 작성"</p>
+    </div>
+  </div>
+  <div class="grid-2 mt12" style="max-width:600px; margin-left:auto; margin-right:auto;">
     <div class="card">
       <h3 style="font-size:0.9em;">🎯 대상 사용자</h3>
-      <p class="dim small mt12">누구를 위한 GPT인지 적습니다.<br>"이걸 써야 난이도 조절이 됩니다."</p>
-      <div class="code-box mt12" style="font-size:0.65em;">대상: AI를 처음 사용하는 자영업자</div>
+      <div class="code-box mt12" style="font-size:0.65em;">대상: AI를 처음 사용하는 공방 사장님</div>
     </div>
     <div class="card">
       <h3 style="font-size:0.9em;">🏆 목표</h3>
-      <p class="dim small mt12">이 GPT가 뭘 잘해야 하는지.<br>"목표가 없으면 실행성이 낮아집니다."</p>
-      <div class="code-box mt12" style="font-size:0.65em;">목표: 실행 가능한 마케팅 전략 제공</div>
+      <div class="code-box mt12" style="font-size:0.65em;">목표: 고객 유입 + 체험 예약 + 매출 상승</div>
     </div>
   </div>
 </section>
 
-<!-- 43. Instructions 작성법 ③ -->
+<!-- 43. Instructions 작성법 ③ - 출력 형식 고정 -->
 <section>
-  <div class="badge badge-pink">INSTRUCTIONS 3/4 · 가장 중요!</div>
-  <h2><span class="hb d1">행동 규칙</span></h2>
+  <div class="badge badge-pink">INSTRUCTIONS 3/5 · 초보자 핵심!</div>
+  <h2><span class="hb d1">출력 형식</span> 고정</h2>
   <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto;">
     <p style="font-size:0.78em; line-height:1.8; color:var(--dim);">
-      막연하게 "잘 답해라"보다 <span class="hu u-pink d2">행동 기준</span>을 넣어야 합니다.
+      구조를 미리 지정하면 → 결과 품질이 <span class="hh h-yellow d2">"폭발적으로 안정화"</span>
     </p>
-    <div class="code-box mt12" style="font-size:0.65em;">- 답변은 3단계 이내로 정리할 것
-- 전문 용어 사용 시 반드시 쉬운 설명 추가
-- 예산이 언급되지 않으면 무료 방법 우선 추천
-- 답변 마지막에 "다음 단계" 1개를 제안할 것
-- 사용자가 막히면 구체적인 예시를 먼저 보여줄 것</div>
+    <div class="code-box mt12" style="font-size:0.65em;">항상 아래 형식으로 작성:
+1. 제목
+2. 핵심 요약
+3. 실행 방법 (Step-by-step)
+4. 실제 사용 예시</div>
+  </div>
+  <div class="tip-box mt12" style="max-width:550px; margin-left:auto; margin-right:auto;">
+    💡 행동 기준도 함께: "예시 포함", "3단계 이내 정리", "무료 방법 우선 추천"
   </div>
 </section>
 
-<!-- 44. Instructions 작성법 ④ -->
+<!-- 44. Instructions 작성법 ④⑤ - Knowledge + Tools -->
 <section>
-  <div class="badge badge-mint">INSTRUCTIONS 4/4</div>
-  <h2>금지 규칙 + <span class="hu u-mint d1">출력 형식</span></h2>
-  <div class="grid-2 mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
+  <div class="badge badge-mint">INSTRUCTIONS 4~5/5</div>
+  <h2>Knowledge + <span class="hu u-mint d1">Tools</span> 설정</h2>
+  <div class="grid-2 mt20" style="max-width:650px; margin-left:auto; margin-right:auto;">
     <div class="card">
-      <h3 style="font-size:0.9em;">🚫 금지 규칙</h3>
-      <div class="code-box mt12" style="font-size:0.65em;">- 영어로 답변하지 말 것
-- 광고성 추천 금지
-- 불확실한 정보 단정짓지 말 것
-- "~할 수 있습니다" 나열 금지</div>
+      <h3 style="font-size:0.9em;">📂 Knowledge (파일 업로드)</h3>
+      <p class="dim small mt12"><span class="hh h-yellow d2">GPT가 참고 데이터로 활용</span></p>
+      <div class="code-box mt12" style="font-size:0.65em;">추천 업로드:
+- 기존 블로그 글
+- 공방 소개서
+- 클래스 설명 / 가격표
+- 고객 후기</div>
     </div>
     <div class="card">
-      <h3 style="font-size:0.9em;">📋 출력 형식</h3>
-      <div class="code-box mt12" style="font-size:0.65em;">- 제목은 굵게
-- 핵심은 번호 목록으로
-- 3문장 이상 시 소제목 추가
-- 마지막에 한 줄 요약 포함</div>
+      <h3 style="font-size:0.9em;">🛠 Tools (선택 기능)</h3>
+      <p class="dim small mt12">목적에 맞게 <span class="hu u-mint d3">ON/OFF</span></p>
+      <div class="code-box mt12" style="font-size:0.65em;">- 🌐 웹 검색
+- 🎨 이미지 생성
+- 💻 코드 실행
+
+👉 블로그 코치 → 웹 검색 ON
+👉 이미지 생성 → 이미지 ON</div>
     </div>
   </div>
 </section>
 
-<!-- 45. 좋은/나쁜 문장 비교 -->
+<!-- 45. 잘되는 GPT vs 망하는 GPT -->
 <section>
   <div class="badge badge-orange">GOOD vs BAD</div>
-  <h2>좋은 문장 vs 나쁜 문장</h2>
+  <h2>잘되는 GPT vs <span class="hs d1">망하는 GPT</span></h2>
   <div class="compare-wrap">
     <div class="compare-box">
-      <h3>❌ <span class="hs d1">나쁜 문장</span></h3>
+      <h3>❌ <span class="hs d1">망하는 GPT</span></h3>
       <ul>
-        <li>"최선을 다해 답하라"</li>
-        <li>"친절하게 설명하라"</li>
-        <li>"전문가처럼 행동하라"</li>
+        <li>범용 ("다 해줘")</li>
+        <li>지침 없음</li>
+        <li>출력 형식 없음</li>
+        <li>데이터 없음</li>
       </ul>
-      <p class="dim small mt12">→ 너무 추상적이라<br>결과가 흔들립니다</p>
     </div>
     <div class="compare-box">
-      <h3>✅ <span class="hh h-mint d2">좋은 문장</span></h3>
+      <h3>✅ <span class="hh h-mint d2">잘되는 GPT</span></h3>
       <ul>
-        <li>"3단계 이내로 정리할 것"</li>
-        <li>"쉬운 설명을 반드시 추가"</li>
-        <li>"무료 방법을 우선 추천"</li>
+        <li><span class="hu u-mint d2">역할이 명확</span>함</li>
+        <li>출력 형식이 고정됨</li>
+        <li>데이터(Knowledge)가 있음</li>
+        <li>특정 문제 해결에 집중</li>
       </ul>
-      <p class="dim small mt12">→ 구체적이고 행동 지시가<br>분명합니다</p>
     </div>
+  </div>
+  <div class="tip-box mt12" style="max-width:650px; margin-left:auto; margin-right:auto;">
+    💡 전략: <span class="hb c-mint d3">하나의 GPT = 하나의 기능</span> → 정확도 상승
+  </div>
+</section>
+
+<!-- 46-a. 실전 고급 전략 -->
+<section>
+  <div class="badge badge-orange">ADVANCED</div>
+  <h2>실전 <span class="hu u-orange d1">고급 전략</span></h2>
+  <div class="benefit-grid">
+    <div class="benefit-card">
+      <div class="num" style="color:var(--accent);">01</div>
+      <h4><span class="hu d2">하나의 GPT = 하나의 기능</span></h4>
+      <p>블로그 전용, 후기 답변 전용,<br>인스타 캡션 전용 → 정확도 상승</p>
+    </div>
+    <div class="benefit-card">
+      <div class="num" style="color:var(--mint);">02</div>
+      <h4><span class="hu u-mint d3">데이터 기반 GPT</span></h4>
+      <p>내 블로그 글 10개, 고객 후기<br>넣으면 → 결과 품질 급상승</p>
+    </div>
+    <div class="benefit-card">
+      <div class="num" style="color:var(--orange);">03</div>
+      <h4><span class="hb c-orange d4">반복 업무 자동화</span></h4>
+      <p>블로그 작성 GPT, 후기 답변 GPT,<br>인스타 캡션 GPT 등</p>
+    </div>
+  </div>
+</section>
+
+<!-- 46-b. GPTs 한계 & 주의사항 -->
+<section>
+  <div class="badge badge-pink">LIMITS</div>
+  <h2>GPTs <span class="hu u-pink d1">한계</span> & 주의</h2>
+  <div class="grid-2 mt20" style="max-width:650px; margin-left:auto; margin-right:auto;">
+    <div class="warn-box" style="margin-top:0;">
+      ⚠️ <strong>한계</strong><br><br>
+      <span class="hb d1">기억 없음</span> — 세션 간 기억 X<br>
+      → 프로젝트/파일로 보완 필요<br><br>
+      정확도 100% 아님 — 항상 <span class="hu u-pink d2">검증 필요</span>
+    </div>
+    <div class="warn-box" style="margin-top:0; border-left-color:var(--orange);">
+      🔒 <strong>보안 주의</strong><br><br>
+      업로드 파일 <span class="hb c-orange d3">노출 가능성</span> 존재<br>
+      민감 정보 업로드 주의<br><br>
+      공개 배포 시 특히 주의
+    </div>
+  </div>
+  <div class="tip-box mt12" style="max-width:650px; margin-left:auto; margin-right:auto; text-align:center;">
+    <strong>"GPTs는 프롬프트를 저장하는 게 아니라, <span class="hu d1">업무를 자동화하는 AI 시스템</span>이다"</strong>
   </div>
 </section>
 
@@ -1274,34 +1389,46 @@ AI는 [처음 사용합니다 / 가끔 사용해 봤습니다].<button class="co
   </div>
 </section>
 
-<!-- 49. Step 2 -->
+<!-- 49. Step 2 - 공방 사장님용 완성본 -->
 <section>
-  <div class="badge badge-mint">STEP 2</div>
-  <h2>원하는 GPTs를 <span class="hc c-mint d1">설명</span></h2>
+  <div class="badge badge-orange">STEP 2 · 복붙용 완성본</div>
+  <h2>"<span class="hc c-mint d1">공방 블로그 코치</span>" 만들기</h2>
   <div class="card mt20" style="max-width:580px; margin-left:auto; margin-right:auto;">
-    <p class="dim small mb8">아래 템플릿을 참고해서 GPT 빌더에게 설명하세요</p>
-    <div class="code-box" style="font-size:0.65em;">역할: [예: 한국어 블로그 글쓰기 코치]
-대상: [예: SNS 마케팅이 처음인 자영업자]
-목표: [예: 실제로 올릴 수 있는 블로그 글 초안 작성]
-규칙:
-- 항상 한국어로 답변
-- 쉬운 말로 설명
-- 답변은 바로 복사해서 사용 가능하게
-금지: 영어 사용, 너무 긴 답변<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
+    <p class="dim small mb8">아래 내용을 GPT 빌더 또는 Configure에 입력하세요</p>
+    <div class="code-box" style="font-size:0.65em;">너는 공방 마케팅 전문가이자 블로그 코치다.
+
+목표:
+- 고객 유입 증가
+- 체험 예약 증가
+- 매출 상승
+
+모든 답변은 아래 기준을 따른다:
+1. 바로 실행 가능
+2. 초보자 기준 설명
+3. 마케팅 관점 적용
+4. 예시 반드시 포함
+
+출력 형식:
+1. 제목
+2. 핵심 요약
+3. 실행 방법
+4. 실제 예시
+
+가능하면 고객이 실제 검색하는 키워드를 포함한다.<button class="copy-btn" onclick="copyCode(this)">복사</button></div>
   </div>
 </section>
 
 <!-- 50. Step 3-4 -->
 <section>
   <div class="badge badge-mint">STEP 3~4</div>
-  <h2>빌더 응답 → <span class="hu u-mint d1">테스트 & 저장</span></h2>
+  <h2>Knowledge 추가 → <span class="hu u-mint d1">테스트 & 저장</span></h2>
   <div class="grid-2 mt20" style="max-width:600px; margin-left:auto; margin-right:auto;">
     <div class="card">
       <div class="step">
         <div class="step-n n-mint">3</div>
         <div class="step-body">
-          <h4>GPT 빌더 질문에 응답</h4>
-          <p>이름, 아이콘, 세부 규칙을 물어봅니다.<br><span class="hh h-mint d2">한국어로 자유롭게</span> 답하세요!</p>
+          <h4>Knowledge에 파일 업로드</h4>
+          <p><span class="hh h-mint d2">기존 블로그 글, 공방 소개서, 가격표</span> 등<br>있으면 업로드하세요!</p>
         </div>
       </div>
     </div>
@@ -1371,7 +1498,20 @@ AI는 [처음 사용합니다 / 가끔 사용해 봤습니다].<button class="co
   </div>
 </section>
 
-<!-- 54. 2일차 예고 -->
+<!-- 55. 후기 이벤트 -->
+<section>
+  <div class="badge badge-orange">EVENT</div>
+  <h2>후기 이벤트</h2>
+  <div class="card mt20" style="max-width:450px; margin-left:auto; margin-right:auto; text-align:center;">
+    <p style="font-size:0.85em; line-height:1.8; color:var(--dim);">
+      후기 이벤트 내용은<br>
+      곧 안내드리겠습니다!<br><br>
+      <span class="dim small">🎁 기대해주세요</span>
+    </p>
+  </div>
+</section>
+
+<!-- 56. 내일 강의 미리보기 -->
 <section>
   <div class="badge badge-orange">TOMORROW · DAY 2</div>
   <h2>내일 강의 <span class="hh h-yellow d1">미리보기</span></h2>
@@ -1386,32 +1526,6 @@ AI는 [처음 사용합니다 / 가끔 사용해 봤습니다].<button class="co
     <p style="font-size:0.85em; font-weight:700; line-height:1.8;">
       <span class="hb d2">꼭 참석하세요!</span><br>
       <span class="dim small">2일 모두 들어야 완성되는 과정입니다</span>
-    </p>
-  </div>
-</section>
-
-<!-- 55. 후기 이벤트 -->
-<section>
-  <div class="badge badge-orange">EVENT</div>
-  <h2>후기 이벤트</h2>
-  <div class="card mt20" style="max-width:450px; margin-left:auto; margin-right:auto; text-align:center;">
-    <p style="font-size:0.85em; line-height:1.8; color:var(--dim);">
-      후기 이벤트 내용은<br>
-      곧 안내드리겠습니다!<br><br>
-      <span class="dim small">🎁 기대해주세요</span>
-    </p>
-  </div>
-</section>
-
-<!-- 56. 감사 인사 -->
-<section>
-  <div class="badge badge-blue">THANK YOU</div>
-  <h2>감사합니다</h2>
-  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto; text-align:center;">
-    <p style="font-size:0.82em; line-height:1.8;">
-      오늘 배운 <span class="hu d1">맞춤 설정</span> + <span class="hu u-mint d2">GPTs</span> 조합만으로도<br>
-      AI 활용의 실질적인 차이를 만들 수 있습니다.<br><br>
-      <strong>같이 성장해요!</strong>
     </p>
   </div>
 </section>
@@ -1442,16 +1556,22 @@ AI는 [처음 사용합니다 / 가끔 사용해 봤습니다].<button class="co
         <p>업로드 시 <span class="hh h-pink d1" style="font-weight:700;">@florist_hyeseon</span> 계정을 꼭 태그해주세요</p>
       </div>
     </div>
-    <div class="step" style="margin-top:16px;">
-      <div class="step-n n-orange">3</div>
-      <div class="step-body">
-        <h4>캡쳐 후 1:1 전송</h4>
-        <p>업로드한 스토리를 <span class="hu u-mint d2">캡쳐</span>하여<br><strong>AI 코치 마크</strong>에게 1:1 채팅으로 이미지 전송</p>
-      </div>
-    </div>
   </div>
   <div class="tip-box" style="max-width:520px; margin:20px auto 0;">
-    📹 위 3단계를 완료하시면 녹화본을 받으실 수 있습니다!
+    📹 위 2단계를 완료하시면 녹화본을 받으실 수 있습니다!
+  </div>
+</section>
+
+<!-- 59. 감사 인사 -->
+<section>
+  <div class="badge badge-blue">THANK YOU</div>
+  <h2>감사합니다</h2>
+  <div class="card mt20" style="max-width:550px; margin-left:auto; margin-right:auto; text-align:center;">
+    <p style="font-size:0.82em; line-height:1.8;">
+      오늘 배운 <span class="hu d1">맞춤 설정</span> + <span class="hu u-mint d2">GPTs</span> 조합만으로도<br>
+      AI 활용의 실질적인 차이를 만들 수 있습니다.<br><br>
+      <strong>같이 성장해요!</strong>
+    </p>
   </div>
 </section>
 
@@ -1629,7 +1749,7 @@ Reveal.on('slidechanged', () => {
 });
 
 // === 저장된 수정 복원 (버전 관리) ===
-const SAVE_VERSION = 'v2';
+const SAVE_VERSION = 'v3';
 (function loadEdits() {
   const ver = localStorage.getItem('markclass_version');
   if (ver !== SAVE_VERSION) { localStorage.removeItem('markclass_edits'); localStorage.setItem('markclass_version', SAVE_VERSION); return; }
